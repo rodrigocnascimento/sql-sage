@@ -1194,14 +1194,4 @@ The workflow MUST follow this order:
 5️⃣ Update CHANGELOG.md
 
 Skipping steps is **not allowed**.
-
----
-
-Se quiser, posso também te entregar **uma versão mais avançada dessa rule** que:
-
-* detecta automaticamente **feat / fix / breaking** a partir do commit
-* atualiza **package.json + git tag**
-* gera **release notes automáticas**
-
-(essa versão fica MUITO boa para projetos grandes como os que você costuma montar).
 <!-- END OPENCODE AUTO -->
