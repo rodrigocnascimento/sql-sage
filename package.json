@@ -1,6 +1,6 @@
 {
   "name": "sql-ml-cli",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "CLI tool to analyze SQL files using ML-based query performance prediction",
   "main": "dist/index.js",
   "bin": {
@@ -12,6 +12,8 @@
     "dev": "tsx src/index.ts",
     "analyze": "tsx src/index.ts analyze",
     "test": "vitest run",
+    "test:unit": "vitest run --exclude 'src/__tests__/**'",
+    "test:e2e": "vitest run src/__tests__/e2e-pipeline.test.ts",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "opencode:compile": "node scripts/opencode-compile.mjs"

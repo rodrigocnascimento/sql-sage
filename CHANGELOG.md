@@ -4,6 +4,20 @@ Todas as mudancas notaveis do projeto sao documentadas neste arquivo.
 
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 
+## [0.4.0] - 2026-03-06
+
+### Added
+- E2E pipeline integration test with 50-query bank across 3 tiers (clean/medium/bad)
+- Test coverage for all 6 phases: feature extraction, heuristic baseline, model training, ML+heuristic analysis, stability, summary report
+- `test:e2e` and `test:unit` npm scripts for independent test execution
+- 3 new unit tests for aggregate function handling in FeatureExtractor
+
+### Fixed
+- `hasSubquery()` false positive on aggregate functions (COUNT, SUM, AVG, MAX)
+
+### Changed
+- Manual test plan (`docs/99-plano-teste-manual.md`) updated to v0.3 compatibility
+
 ## [0.3.0] - 2026-03-06
 
 ### Added
