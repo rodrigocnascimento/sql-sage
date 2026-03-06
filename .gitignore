@@ -6,3 +6,8 @@ coverage/
 .env
 .idea/
 package-lock.json
+
+# Ignore data contents but keep examples
+data/*
+!data/examples/
+models/
