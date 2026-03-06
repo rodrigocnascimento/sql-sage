@@ -2,7 +2,6 @@
   "name": "sql-ml-cli",
   "version": "1.0.0",
   "description": "CLI tool to analyze SQL files using ML-based query performance prediction",
-  "type": "module",
   "main": "dist/index.js",
   "bin": {
     "sql-ml": "./dist/index.js"

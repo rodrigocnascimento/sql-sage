@@ -1,6 +1,9 @@
 import { Command } from 'commander';
 import { readFileSync } from 'fs';
-import { MLPredictionService } from './services/ml-prediction.service.js';
+import { MLPredictionService } from './services/ml-prediction.service';
+import { createCollectCommand } from './services/data/query-collector';
+import { createFeaturesCommand } from './services/data/features-command';
+import { createTrainCommand } from './services/data/train-command';
 
 const program = new Command();
 
@@ -8,6 +11,10 @@ program
   .name('sql-ml')
   .description('CLI tool to analyze SQL files using ML-based query performance prediction')
   .version('1.0.0');
+
+program.addCommand(createCollectCommand());
+program.addCommand(createFeaturesCommand());
+program.addCommand(createTrainCommand());
 
 program
   .command('analyze')
