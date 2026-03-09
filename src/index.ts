@@ -12,7 +12,7 @@ const program = new Command();
 program
   .name('sql-ml')
   .description('CLI tool to analyze SQL files using ML-based query performance prediction')
-  .version('0.5.0')
+  .version('0.6.0')
   .option('--host <host>', 'Database host')
   .option('--port <port>', 'Database port')
   .option('--user <user>', 'Database user')
