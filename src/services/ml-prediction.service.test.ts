@@ -84,8 +84,12 @@ describe('MLPredictionService', () => {
     });
 
     it('should report mlAvailable false without trained model', async () => {
+      // Use a dedicated service with a non-existent models dir to guarantee no weights
+      const cleanService = new MLPredictionService();
+      await cleanService.initialize('/tmp/nonexistent-models-dir');
+
       const request: MLPredictionRequest = { sql: 'SELECT * FROM users' };
-      const result = await service.predict(request);
+      const result = await cleanService.predict(request);
 
       // No trained model loaded, so ML should not be available
       expect(result.mlAvailable).toBe(false);

@@ -1,5 +1,6 @@
 import { Command } from 'commander';
 import { SlowLogParser } from './slow-log-parser.js';
+import { SqlFileParser } from './sql-file-parser.js';
 import { DatasetStorage } from './storage.js';
 import { ISQLQueryRecord } from './types.js';
 import { IDatabaseConnector } from '../db/connector.js';
@@ -15,7 +16,8 @@ export function createCollectCommand(resolveConnector?: ConnectorResolver): Comm
 
   command
     .description('Collect SQL queries from various sources')
-    .option('-i, --input <path>', 'Input file (slow query log)')
+    .argument('[file]', 'Input file (.sql or slow query log)')
+    .option('-i, --input <path>', 'Input file (.sql or slow query log)')
     .option('-o, --output <path>', 'Output file path', 'data/queries.jsonl')
     .option('-q, --query <sql>', 'Single query to add')
     .option('-t, --time <ms>', 'Execution time in milliseconds', '0')
@@ -25,7 +27,11 @@ export function createCollectCommand(resolveConnector?: ConnectorResolver): Comm
     .option('--limit <n>', 'Maximum number of queries to collect from DB', '100')
     .option('--timestamp <iso>', 'Timestamp (ISO format)', new Date().toISOString());
 
-  command.action(async (options) => {
+  command.action(async (file, options) => {
+    // Positional argument takes precedence, falls back to --input
+    if (file && !options.input) {
+      options.input = file;
+    }
     const storage = new DatasetStorage(options.output);
     let collected = false;
 
@@ -68,13 +74,22 @@ export function createCollectCommand(resolveConnector?: ConnectorResolver): Comm
       }
     }
 
-    // Source: slow query log file
+    // Source: file (slow query log or plain .sql)
     if (options.input) {
-      console.log(`[Collect] Parsing slow query log: ${options.input}`);
-      const parser = new SlowLogParser();
-      const records = parser.parse(options.input);
-      storage.appendRecords(records);
-      console.log(`[Collect] Added ${records.length} queries to ${options.output}`);
+      const isSqlFile = options.input.endsWith('.sql');
+      if (isSqlFile) {
+        console.log(`[Collect] Parsing SQL file: ${options.input}`);
+        const parser = new SqlFileParser();
+        const records = parser.parse(options.input, options.database);
+        storage.appendRecords(records);
+        console.log(`[Collect] Added ${records.length} queries to ${options.output}`);
+      } else {
+        console.log(`[Collect] Parsing slow query log: ${options.input}`);
+        const parser = new SlowLogParser();
+        const records = parser.parse(options.input);
+        storage.appendRecords(records);
+        console.log(`[Collect] Added ${records.length} queries to ${options.output}`);
+      }
       collected = true;
     }
 

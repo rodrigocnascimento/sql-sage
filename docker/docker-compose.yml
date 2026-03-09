@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: sqlml-mysql
+    restart: unless-stopped
+    ports:
+      - '3316:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: sqlml_root_pass
+      MYSQL_DATABASE: ecommerce_demo
+    command:
+      - --performance-schema=ON
+      - --performance-schema-consumer-events-statements-history=ON
+      - --performance-schema-consumer-events-statements-history-long=ON
+      - --performance-schema-consumer-events-statements-current=ON
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d:ro
+      - sqlml-mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-psqlml_root_pass']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+volumes:
+  sqlml-mysql-data:
+    driver: local
