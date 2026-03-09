@@ -4,6 +4,24 @@ Todas as mudancas notaveis do projeto sao documentadas neste arquivo.
 
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 
+## [0.6.0] - 2026-03-09
+
+### Added
+- Docker Compose infrastructure for MySQL 8.0 demo database (port 3316, `performance_schema` enabled)
+- E-commerce schema with 7 tables and intentional index gaps for analyzer testing (`docker/init/01-schema.sql`)
+- TypeScript seed script with deterministic LCG random and configurable `--scale` flag (`docker/seed/seed.ts`)
+- Query bank with 50 SQL queries across 3 tiers: good, medium, bad (`data/examples/ecommerce-queries.sql`)
+- `SqlFileParser` for collecting queries from plain `.sql` files (strips comments, splits on `;`)
+- Positional `[file]` argument in `collect` command with automatic format detection (`.sql` vs slow log)
+- npm scripts: `db:up`, `db:down`, `db:reset`, `db:seed` for Docker database management
+- `.env.docker` connection template for demo database
+- Validation & evolution document: `docs/110-validation-and-evolution.md`
+- Technical Design Document: `docs/tdd-ecommerce-demo-db.md`
+- 16 new tests for `SqlFileParser` — total: 345 tests
+
+### Fixed
+- Flaky `mlAvailable` test now uses isolated service instance with non-existent model directory
+
 ## [0.5.0] - 2026-03-06
 
 ### Added

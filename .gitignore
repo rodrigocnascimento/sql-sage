@@ -12,3 +12,6 @@ data/*
 !data/examples/
 models/*
 !models/examples/
+
+# Docker data volume
+docker/data/
