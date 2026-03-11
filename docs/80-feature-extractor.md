@@ -214,8 +214,8 @@ interface IIndexInfo {
 Le o arquivo `queries.jsonl`, extrai as 18 features de cada query e salva em `features.jsonl`.
 
 ```bash
-sql-ml features
-sql-ml features --input data/queries.jsonl --output data/features.jsonl
+sql-sage features
+sql-sage features --input data/queries.jsonl --output data/features.jsonl
 ```
 
 ### Saida

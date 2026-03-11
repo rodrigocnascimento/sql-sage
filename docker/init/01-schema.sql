@@ -1,5 +1,5 @@
 -- ============================================================
--- E-commerce Demo Schema for sql-ml-cli
+-- E-commerce Demo Schema for sql-sage
 -- Database: ecommerce_demo
 -- Purpose: Realistic schema with strategic index placement
 --          to demonstrate ML-based SQL performance analysis.

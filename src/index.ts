@@ -10,7 +10,7 @@ import { createConnector, IDatabaseConnector } from './services/db/connector.js'
 const program = new Command();
 
 program
-  .name('sql-ml')
+  .name('sql-sage')
   .description('CLI tool to analyze SQL files using ML-based query performance prediction')
   .version('0.6.0')
   .option('--host <host>', 'Database host')
@@ -149,7 +149,7 @@ program
       // If connected, get table list
       if (connector) {
         const dbOpts = getGlobalDbOptions();
-        const dbName = dbOpts.database || process.env.SQLML_DATABASE || '';
+        const dbName = dbOpts.database || process.env.SQLSAGE_DATABASE || '';
         if (dbName) {
           const tables = await connector.getTablesInDatabase(dbName);
           (dbStatus as Record<string, unknown>).tables = tables;

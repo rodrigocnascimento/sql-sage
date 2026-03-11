@@ -38,11 +38,11 @@ function parseArgs(): {
   };
 
   return {
-    host: get('--host', process.env.SQLML_HOST || 'localhost'),
-    port: parseInt(get('--port', process.env.SQLML_PORT || '3316'), 10),
-    user: get('--user', process.env.SQLML_USER || 'root'),
-    password: get('--password', process.env.SQLML_PASSWORD || 'sqlml_root_pass'),
-    database: get('--database', process.env.SQLML_DATABASE || 'ecommerce_demo'),
+    host: get('--host', process.env.SQLSAGE_HOST || 'localhost'),
+    port: parseInt(get('--port', process.env.SQLSAGE_PORT || '3316'), 10),
+    user: get('--user', process.env.SQLSAGE_USER || 'root'),
+    password: get('--password', process.env.SQLSAGE_PASSWORD || 'sqlsage_root_pass'),
+    database: get('--database', process.env.SQLSAGE_DATABASE || 'ecommerce_demo'),
     scale: parseInt(get('--scale', '1000'), 10),
   };
 }
@@ -451,7 +451,7 @@ async function main(): Promise<void> {
   const orderCount = Math.round(scale * 5);
   const reviewCount = Math.round(scale * 2);
 
-  console.log(`\n[sql-ml-cli] E-commerce Demo Seed`);
+  console.log(`\n[sql-sage] E-commerce Demo Seed`);
   console.log(`  Scale:      ${scale}`);
   console.log(`  Customers:  ${customerCount}`);
   console.log(`  Products:   ${productCount}`);

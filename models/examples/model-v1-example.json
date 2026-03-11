@@ -1,6 +1,6 @@
 {
   "format": "layers-model",
-  "generatedBy": "sql-ml-cli",
+  "generatedBy": "sql-sage",
   "version": "v1-example",
   "userDefined": {},
   "modelTopology": {

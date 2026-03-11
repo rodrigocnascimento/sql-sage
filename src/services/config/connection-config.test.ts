@@ -7,9 +7,9 @@ describe('connection-config', () => {
   beforeEach(() => {
     // Reset env for each test
     process.env = { ...originalEnv };
-    // Clear any SQLML_ vars from parent env
+    // Clear any SQLSAGE_ vars from parent env
     Object.keys(process.env).forEach(key => {
-      if (key.startsWith('SQLML_')) {
+      if (key.startsWith('SQLSAGE_')) {
         delete process.env[key];
       }
     });
@@ -138,10 +138,10 @@ describe('connection-config', () => {
   });
 
   describe('environment variable resolution', () => {
-    it('should resolve database from SQLML_DATABASE env var', () => {
-      process.env.SQLML_DATABASE = 'envdb';
-      process.env.SQLML_USER = 'envuser';
-      process.env.SQLML_PASSWORD = 'envpass';
+    it('should resolve database from SQLSAGE_DATABASE env var', () => {
+      process.env.SQLSAGE_DATABASE = 'envdb';
+      process.env.SQLSAGE_USER = 'envuser';
+      process.env.SQLSAGE_PASSWORD = 'envpass';
 
       const result = resolveConnectionConfig();
       expect(result).not.toBeNull();
@@ -150,42 +150,42 @@ describe('connection-config', () => {
     });
 
     it('should resolve host and port from env vars', () => {
-      process.env.SQLML_DATABASE = 'envdb';
-      process.env.SQLML_USER = 'envuser';
-      process.env.SQLML_PASSWORD = 'envpass';
-      process.env.SQLML_HOST = '192.168.1.1';
-      process.env.SQLML_PORT = '3307';
+      process.env.SQLSAGE_DATABASE = 'envdb';
+      process.env.SQLSAGE_USER = 'envuser';
+      process.env.SQLSAGE_PASSWORD = 'envpass';
+      process.env.SQLSAGE_HOST = '192.168.1.1';
+      process.env.SQLSAGE_PORT = '3307';
 
       const result = resolveConnectionConfig();
       expect(result!.host).toBe('192.168.1.1');
       expect(result!.port).toBe(3307);
     });
 
-    it('should resolve engine from SQLML_ENGINE env var', () => {
-      process.env.SQLML_DATABASE = 'envdb';
-      process.env.SQLML_USER = 'envuser';
-      process.env.SQLML_PASSWORD = 'envpass';
-      process.env.SQLML_ENGINE = 'mariadb';
+    it('should resolve engine from SQLSAGE_ENGINE env var', () => {
+      process.env.SQLSAGE_DATABASE = 'envdb';
+      process.env.SQLSAGE_USER = 'envuser';
+      process.env.SQLSAGE_PASSWORD = 'envpass';
+      process.env.SQLSAGE_ENGINE = 'mariadb';
 
       const result = resolveConnectionConfig();
       expect(result!.engine).toBe('mariadb');
     });
 
-    it('should resolve ssl from SQLML_SSL env var', () => {
-      process.env.SQLML_DATABASE = 'envdb';
-      process.env.SQLML_USER = 'envuser';
-      process.env.SQLML_PASSWORD = 'envpass';
-      process.env.SQLML_SSL = 'true';
+    it('should resolve ssl from SQLSAGE_SSL env var', () => {
+      process.env.SQLSAGE_DATABASE = 'envdb';
+      process.env.SQLSAGE_USER = 'envuser';
+      process.env.SQLSAGE_PASSWORD = 'envpass';
+      process.env.SQLSAGE_SSL = 'true';
 
       const result = resolveConnectionConfig();
       expect(result!.ssl).toBe(true);
     });
 
-    it('should resolve ssl=false from SQLML_SSL="0"', () => {
-      process.env.SQLML_DATABASE = 'envdb';
-      process.env.SQLML_USER = 'envuser';
-      process.env.SQLML_PASSWORD = 'envpass';
-      process.env.SQLML_SSL = '0';
+    it('should resolve ssl=false from SQLSAGE_SSL="0"', () => {
+      process.env.SQLSAGE_DATABASE = 'envdb';
+      process.env.SQLSAGE_USER = 'envuser';
+      process.env.SQLSAGE_PASSWORD = 'envpass';
+      process.env.SQLSAGE_SSL = '0';
 
       const result = resolveConnectionConfig();
       expect(result!.ssl).toBe(false);
@@ -194,10 +194,10 @@ describe('connection-config', () => {
 
   describe('priority: CLI > env > defaults', () => {
     it('CLI flags should override env vars', () => {
-      process.env.SQLML_DATABASE = 'envdb';
-      process.env.SQLML_USER = 'envuser';
-      process.env.SQLML_PASSWORD = 'envpass';
-      process.env.SQLML_HOST = 'envhost';
+      process.env.SQLSAGE_DATABASE = 'envdb';
+      process.env.SQLSAGE_USER = 'envuser';
+      process.env.SQLSAGE_PASSWORD = 'envpass';
+      process.env.SQLSAGE_HOST = 'envhost';
 
       const result = resolveConnectionConfig({
         database: 'clidb',
@@ -213,11 +213,11 @@ describe('connection-config', () => {
     });
 
     it('env vars should override defaults', () => {
-      process.env.SQLML_DATABASE = 'envdb';
-      process.env.SQLML_USER = 'envuser';
-      process.env.SQLML_PASSWORD = 'envpass';
-      process.env.SQLML_HOST = 'envhost';
-      process.env.SQLML_PORT = '5555';
+      process.env.SQLSAGE_DATABASE = 'envdb';
+      process.env.SQLSAGE_USER = 'envuser';
+      process.env.SQLSAGE_PASSWORD = 'envpass';
+      process.env.SQLSAGE_HOST = 'envhost';
+      process.env.SQLSAGE_PORT = '5555';
 
       const result = resolveConnectionConfig();
 
@@ -226,9 +226,9 @@ describe('connection-config', () => {
     });
 
     it('defaults should apply when CLI and env are both absent', () => {
-      process.env.SQLML_DATABASE = 'envdb';
-      process.env.SQLML_USER = 'envuser';
-      process.env.SQLML_PASSWORD = 'envpass';
+      process.env.SQLSAGE_DATABASE = 'envdb';
+      process.env.SQLSAGE_USER = 'envuser';
+      process.env.SQLSAGE_PASSWORD = 'envpass';
 
       const result = resolveConnectionConfig();
 

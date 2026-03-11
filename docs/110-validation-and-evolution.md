@@ -31,10 +31,10 @@ These confirm the Docker + MySQL + seed pipeline is functional:
 
 | # | Check | Command | Expected |
 |---|---|---|---|
-| 1 | Container starts and is healthy | `npm run db:up` then `docker ps` | `sqlml-mysql` status: `Up ... (healthy)` |
-| 2 | Schema is created on init | `docker exec sqlml-mysql mysql -uroot -psqlml_root_pass ecommerce_demo -e "SHOW TABLES"` | 7 tables: `categories`, `customers`, `order_items`, `orders`, `payments`, `products`, `reviews` |
-| 3 | Seed script populates data | `npm run db:seed -- --host localhost --port 3316 --user root --password sqlml_root_pass --database ecommerce_demo` | ~26K rows total (scale=1000) |
-| 4 | `performance_schema` is ON | `docker exec sqlml-mysql mysql -uroot -psqlml_root_pass -e "SHOW VARIABLES LIKE 'performance_schema'"` | `ON` |
+| 1 | Container starts and is healthy | `npm run db:up` then `docker ps` | `sqlsage-mysql` status: `Up ... (healthy)` |
+| 2 | Schema is created on init | `docker exec sqlsage-mysql mysql -uroot -psqlsage_root_pass ecommerce_demo -e "SHOW TABLES"` | 7 tables: `categories`, `customers`, `order_items`, `orders`, `payments`, `products`, `reviews` |
+| 3 | Seed script populates data | `npm run db:seed -- --host localhost --port 3316 --user root --password sqlsage_root_pass --database ecommerce_demo` | ~26K rows total (scale=1000) |
+| 4 | `performance_schema` is ON | `docker exec sqlsage-mysql mysql -uroot -psqlsage_root_pass -e "SHOW VARIABLES LIKE 'performance_schema'"` | `ON` |
 | 5 | Container reset is clean | `npm run db:reset` then repeat seed | Same counts, no duplicates (idempotent) |
 
 ### 1.2 Connector Layer Validation (Live)
@@ -43,10 +43,10 @@ These prove the v0.5.0 connector works against the real Docker DB:
 
 | # | Check | Command | What to Observe |
 |---|---|---|---|
-| 6 | `status` shows DB connection | `npm run dev -- status --host localhost --port 3316 --user root --password sqlml_root_pass --database ecommerce_demo` | Output includes connection info, table list, engine status |
-| 7 | `analyze` with live EXPLAIN | `npm run dev -- analyze data/examples/ecommerce-queries.sql --host localhost --port 3316 --user root --password sqlml_root_pass --database ecommerce_demo --verbose` | `liveExplain: true`, `estimatedRows > 0` for queries against populated tables |
+| 6 | `status` shows DB connection | `npm run dev -- status --host localhost --port 3316 --user root --password sqlsage_root_pass --database ecommerce_demo` | Output includes connection info, table list, engine status |
+| 7 | `analyze` with live EXPLAIN | `npm run dev -- analyze data/examples/ecommerce-queries.sql --host localhost --port 3316 --user root --password sqlsage_root_pass --database ecommerce_demo --verbose` | `liveExplain: true`, `estimatedRows > 0` for queries against populated tables |
 | 8 | `analyze` with live catalog | Same as #7 | `liveCatalog: true`, `whereColumnsIndexed` reflects actual index coverage |
-| 9 | `collect --source db` | `npm run dev -- collect --source db --host localhost --port 3316 --user root --password sqlml_root_pass --database ecommerce_demo` | Collects queries from `performance_schema.events_statements_summary_by_digest` |
+| 9 | `collect --source db` | `npm run dev -- collect --source db --host localhost --port 3316 --user root --password sqlsage_root_pass --database ecommerce_demo` | Collects queries from `performance_schema.events_statements_summary_by_digest` |
 | 10 | `analyze` without DB (graceful fallback) | `npm run dev -- analyze data/examples/ecommerce-queries.sql` | Works in heuristic-only mode, `liveExplain: false`, `liveCatalog: false` |
 
 ### 1.3 ML Feature Signal Validation
@@ -96,7 +96,7 @@ The end-to-end loop that proves the system works as a complete ML pipeline:
 | # | Step | Command | What to Observe |
 |---|---|---|---|
 | 17 | Collect from file | `npm run dev -- collect data/examples/ecommerce-queries.sql` | Writes `data/queries.jsonl` with 50 records |
-| 18 | Extract features | `npm run dev -- features` | Writes `.sqlml/features.jsonl` with 50 feature vectors |
+| 18 | Extract features | `npm run dev -- features` | Writes `.sqlsage/features.jsonl` with 50 feature vectors |
 | 19 | Train model | `npm run dev -- train --epochs 20` | Model saved to `models/`, reports accuracy and loss metrics |
 | 20 | Analyze with trained model | Repeat check #7 | `mlAvailable: true`, score combines heuristic (60%) + ML (40%) |
 
@@ -156,7 +156,7 @@ These are enabled directly by v0.5.0 + e-commerce demo with minimal code changes
 
 #### E. `compare` Command
 
-**What:** New CLI command: `sql-ml compare --before <baseline.json> --after <current.json>` that diffs two analysis reports and highlights score regressions, new anti-patterns, or resolved issues.
+**What:** New CLI command: `sql-sage compare --before <baseline.json> --after <current.json>` that diffs two analysis reports and highlights score regressions, new anti-patterns, or resolved issues.
 
 **Why:** Useful in CI/CD pipelines — run `analyze` on PR SQL changes and compare against `main` baseline.
 
@@ -168,7 +168,7 @@ These are enabled directly by v0.5.0 + e-commerce demo with minimal code changes
 
 #### G. `explain` Command
 
-**What:** New CLI command: `sql-ml explain <file.sql> --host ... --database ...` that runs each query through `EXPLAIN` and presents a human-readable interpretation of the execution plan (access type, index usage, rows examined, join order).
+**What:** New CLI command: `sql-sage explain <file.sql> --host ... --database ...` that runs each query through `EXPLAIN` and presents a human-readable interpretation of the execution plan (access type, index usage, rows examined, join order).
 
 **Why:** The infrastructure exists (`MysqlConnector.explain()` + `ExplainParser`). Surfacing it as a standalone command adds immediate DBA utility without touching the ML layer.
 
@@ -182,13 +182,13 @@ These are enabled directly by v0.5.0 + e-commerce demo with minimal code changes
 
 #### I. Plugin System for Custom Rules
 
-**What:** Allow users to define custom heuristic rules in a `.sqlml/rules/` directory (JavaScript/TypeScript files conforming to an `IHeuristicRule` interface). The engine loads and applies them alongside built-in rules.
+**What:** Allow users to define custom heuristic rules in a `.sqlsage/rules/` directory (JavaScript/TypeScript files conforming to an `IHeuristicRule` interface). The engine loads and applies them alongside built-in rules.
 
 **Why:** Different teams have different SQL standards. A `no-select-star` rule might be critical for one team and irrelevant for another.
 
 #### J. Multi-Database Workspace
 
-**What:** Support multiple database connections in a single `.sqlml/config.yml`. Each connection can have its own schema, indexes, and performance characteristics. The analyzer automatically routes queries to the appropriate connection.
+**What:** Support multiple database connections in a single `.sqlsage/config.yml`. Each connection can have its own schema, indexes, and performance characteristics. The analyzer automatically routes queries to the appropriate connection.
 
 **Why:** Real projects often use multiple databases (read replicas, analytics DB, OLTP vs OLAP). The connector pattern already supports this — it just needs configuration and routing.
 
@@ -291,7 +291,7 @@ npm run db:up                    # Start MySQL container
 npm run db:down                  # Stop container
 npm run db:reset                 # Destroy + recreate (clean slate)
 npm run db:seed -- --host localhost --port 3316 --user root \
-  --password sqlml_root_pass --database ecommerce_demo
+  --password sqlsage_root_pass --database ecommerce_demo
 
 # Analysis (offline — heuristics only)
 npm run dev -- analyze data/examples/ecommerce-queries.sql --verbose
@@ -299,7 +299,7 @@ npm run dev -- analyze data/examples/ecommerce-queries.sql --verbose
 # Analysis (live — with EXPLAIN + catalog)
 npm run dev -- analyze data/examples/ecommerce-queries.sql \
   --host localhost --port 3316 --user root \
-  --password sqlml_root_pass --database ecommerce_demo --verbose
+  --password sqlsage_root_pass --database ecommerce_demo --verbose
 
 # Full pipeline
 npm run dev -- collect data/examples/ecommerce-queries.sql
@@ -309,7 +309,7 @@ npm run dev -- analyze data/examples/ecommerce-queries.sql -o report.json
 
 # Status
 npm run dev -- status --host localhost --port 3316 --user root \
-  --password sqlml_root_pass --database ecommerce_demo
+  --password sqlsage_root_pass --database ecommerce_demo
 
 # Tests
 npm test                         # All 329 tests

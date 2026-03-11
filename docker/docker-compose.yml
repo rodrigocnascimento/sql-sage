@@ -3,12 +3,12 @@ version: '3.8'
 services:
   mysql:
     image: mysql:8.0
-    container_name: sqlml-mysql
+    container_name: sqlsage-mysql
     restart: unless-stopped
     ports:
       - '3316:3306'
     environment:
-      MYSQL_ROOT_PASSWORD: sqlml_root_pass
+      MYSQL_ROOT_PASSWORD: sqlsage_root_pass
       MYSQL_DATABASE: ecommerce_demo
     command:
       - --performance-schema=ON
@@ -19,14 +19,14 @@ services:
       - --collation-server=utf8mb4_unicode_ci
     volumes:
       - ./init:/docker-entrypoint-initdb.d:ro
-      - sqlml-mysql-data:/var/lib/mysql
+      - sqlsage-mysql-data:/var/lib/mysql
     healthcheck:
-      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-psqlml_root_pass']
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-psqlsage_root_pass']
       interval: 5s
       timeout: 5s
       retries: 10
       start_period: 30s
 
 volumes:
-  sqlml-mysql-data:
+  sqlsage-mysql-data:
     driver: local

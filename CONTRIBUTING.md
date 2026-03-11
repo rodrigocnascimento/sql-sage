@@ -1,6 +1,6 @@
 # Contribuindo
 
-Guia para contribuir com o projeto `sql-ml-cli`.
+Guia para contribuir com o projeto `sql-sage`.
 
 ## Pre-requisitos
 
@@ -11,7 +11,7 @@ Guia para contribuir com o projeto `sql-ml-cli`.
 
 ```bash
 git clone <repo-url>
-cd sql-ml-cli
+cd sql-sage
 npm install
 ```
 

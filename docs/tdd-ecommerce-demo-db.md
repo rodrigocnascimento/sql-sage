@@ -9,7 +9,7 @@
 ## 1. Objective & Scope
 
 ### What
-Create a self-contained e-commerce demo database environment for sql-ml-cli, consisting of:
+Create a self-contained e-commerce demo database environment for sql-sage, consisting of:
 1. Docker Compose running MySQL 8.0 with `performance_schema` enabled
 2. DDL schema with 7 interrelated tables and strategic index placement
 3. TypeScript seed script with configurable data volume
@@ -22,7 +22,7 @@ Create a self-contained e-commerce demo database environment for sql-ml-cli, con
 - Training the model on queries with real EXPLAIN data will improve prediction quality
 
 ### Non-goals
-- Not a production schema — optimized for demonstrating sql-ml-cli
+- Not a production schema — optimized for demonstrating sql-sage
 - No application code (API, ORM)
 - No migration system — plain SQL DDL loaded by Docker entrypoint
 
@@ -32,7 +32,7 @@ Create a self-contained e-commerce demo database environment for sql-ml-cli, con
 
 ### 2.1 Docker Compose
 - Image: `mysql:8.0`, port `3316:3306`
-- Database: `ecommerce_demo`, user: `root` / `sqlml_root_pass`
+- Database: `ecommerce_demo`, user: `root` / `sqlsage_root_pass`
 - `performance_schema=ON` via command args
 - Init scripts mounted via `/docker-entrypoint-initdb.d/`
 - Named volume for data persistence
