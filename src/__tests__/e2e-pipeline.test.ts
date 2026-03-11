@@ -1,5 +1,5 @@
 /**
- * E2E Pipeline Integration Test - sql-ml-cli v0.3
+ * E2E Pipeline Integration Test - sql-sage v0.3
  *
  * Validates the full pipeline: feature extraction -> heuristic analysis ->
  * model training -> ML+heuristic prediction.
@@ -171,7 +171,7 @@ describe('E2E Pipeline', () => {
   const mlResults = new Map<string, { performanceScore: number; mlAvailable: boolean; insights: ISQLInsight[] }>();
 
   beforeAll(() => {
-    tempDir = mkdtempSync(join(tmpdir(), 'sql-ml-e2e-'));
+    tempDir = mkdtempSync(join(tmpdir(), 'sql-sage-e2e-'));
     featuresPath = join(tempDir, 'features.jsonl');
     modelsDir = join(tempDir, 'models');
   });
@@ -509,7 +509,7 @@ describe('E2E Pipeline', () => {
       const sep = '-'.repeat(66);
       console.log('\n');
       console.log(sep);
-      console.log('  E2E Pipeline Results - sql-ml-cli v0.3');
+      console.log('  E2E Pipeline Results - sql-sage v0.3');
       console.log(sep);
       console.log(
         `  ${padRight('Tier', 8)} | ${padLeft('Count', 5)} | ${padLeft('Heuristic', 10)} | ${padLeft('ML+H', 10)} | ${padLeft('Delta', 8)}`

@@ -1,4 +1,4 @@
-# Plano de Teste Manual - sql-ml-cli v0.3
+# Plano de Teste Manual - sql-sage v0.3
 
 Roteiro para validar o pipeline completo da ferramenta, da coleta ao treinamento e analise.
 

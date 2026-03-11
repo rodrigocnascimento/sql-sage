@@ -101,7 +101,7 @@ Resolution order (higher priority wins):
 2. `.env` file in project root (via `dotenv`)
 3. Defaults: `host=localhost`, `port=3306`, `engine=mysql`
 
-Env vars: `SQLML_HOST`, `SQLML_PORT`, `SQLML_USER`, `SQLML_PASSWORD`, `SQLML_DATABASE`, `SQLML_ENGINE`
+Env vars: `SQLSAGE_HOST`, `SQLSAGE_PORT`, `SQLSAGE_USER`, `SQLSAGE_PASSWORD`, `SQLSAGE_DATABASE`, `SQLSAGE_ENGINE`
 
 ### 2.5 Command Integration
 
@@ -140,7 +140,7 @@ Env vars: `SQLML_HOST`, `SQLML_PORT`, `SQLML_USER`, `SQLML_PASSWORD`, `SQLML_DAT
 ### Phase 1: Foundation
 - `src/services/db/connector.ts` -- `IDatabaseConnector`, `IConnectorConfig`, `ICollectOptions`, `createConnector()`
 - `src/services/config/connection-config.ts` -- `resolveConnectionConfig()`
-- `.env.example` -- Template with all `SQLML_*` vars
+- `.env.example` -- Template with all `SQLSAGE_*` vars
 
 ### Phase 2: MySQL Connector
 - `src/services/db/mysql-connector.ts` -- Full `MysqlConnector` implementation

@@ -47,7 +47,7 @@ export function createCollectCommand(resolveConnector?: ConnectorResolver): Comm
         connector = await resolveConnector();
 
         if (!connector) {
-          console.error('[Collect] Error: No database configured. Provide --database, --user, --password flags or set SQLML_* environment variables.');
+          console.error('[Collect] Error: No database configured. Provide --database, --user, --password flags or set SQLSAGE_* environment variables.');
           process.exit(1);
         }
 

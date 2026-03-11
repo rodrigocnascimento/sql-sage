@@ -1,4 +1,4 @@
-# AGENTS.md - Development Guidelines for sql-ml-cli
+# AGENTS.md - Development Guidelines for sql-sage
 
 ## Project Overview
 

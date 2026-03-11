@@ -35,10 +35,10 @@ describe('CLI (index.ts)', () => {
     it('should have correct program name and version', () => {
       const program = new Command();
       program
-        .name('sql-ml')
+        .name('sql-sage')
         .version('1.0.0');
 
-      expect(program.name()).toBe('sql-ml');
+      expect(program.name()).toBe('sql-sage');
       expect(program.version()).toBe('1.0.0');
     });
 

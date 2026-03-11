@@ -1,4 +1,4 @@
-# Auditoria Tecnica - sql-ml-cli v0.2
+# Auditoria Tecnica - sql-sage v0.2
 
 Analise critica do estado atual da ferramenta, com foco na capacidade real de predicao de queries problematicas no MySQL.
 
@@ -57,7 +57,7 @@ Mesmo que se tentasse conectar os dois, as dimensoes de entrada nao batem. Seria
 ### Fluxo de execucao
 
 ```
-sql-ml analyze arquivo.sql
+sql-sage analyze arquivo.sql
   -> MLPredictionService.initialize()
     -> MLQueryEngine.start()
       -> QueryPerformancePredictor.buildModel()  // pesos ALEATORIOS

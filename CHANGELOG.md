@@ -4,6 +4,17 @@ Todas as mudancas notaveis do projeto sao documentadas neste arquivo.
 
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 
+## [0.7.0] - 2026-03-10
+
+### Changed
+- Project renamed from `sql-ml-cli` to `sql-sage` across entire codebase (30 files, ~170 replacements)
+- CLI binary renamed from `sql-ml` to `sql-sage`
+- Environment variable prefix renamed from `SQLML_*` to `SQLSAGE_*` (9 vars)
+- Docker container renamed from `sqlml-mysql` to `sqlsage-mysql`
+- Docker volume renamed from `sqlml-mysql-data` to `sqlsage-mysql-data`
+- Docker password renamed from `sqlml_root_pass` to `sqlsage_root_pass`
+- Future config directory references renamed from `.sqlml/` to `.sqlsage/`
+
 ## [0.6.0] - 2026-03-09
 
 ### Added
@@ -33,7 +44,7 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 - `liveExplain` and `liveCatalog` flags in `MLPredictionResponse` indicating real data usage
 - Global CLI flags: `--host`, `--port`, `--user`, `--password`, `--database`, `--engine`, `--ssl`
 - Connection config resolver with CLI > `.env` > defaults priority (`resolveConnectionConfig()`)
-- `.env.example` template for `SQLML_*` environment variables
+- `.env.example` template for `SQLSAGE_*` environment variables
 - Technical Design Document: `docs/tdd-real-db-connector.md`
 - 63 new tests (connector factory, MySQL connector, connection config) — total: 329 tests
 

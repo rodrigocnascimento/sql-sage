@@ -11,9 +11,9 @@ Interface de linha de comando que expoe a funcionalidade do sistema para uso dir
 Analisa um arquivo SQL e retorna predicao de performance.
 
 ```bash
-sql-ml analyze <file.sql>
-sql-ml analyze <file.sql> --output result.json
-sql-ml analyze <file.sql> --verbose
+sql-sage analyze <file.sql>
+sql-sage analyze <file.sql> --output result.json
+sql-sage analyze <file.sql> --verbose
 ```
 
 **Opcoes:**
@@ -25,7 +25,7 @@ sql-ml analyze <file.sql> --verbose
 Mostra o estado atual do motor de ML.
 
 ```bash
-sql-ml status
+sql-sage status
 ```
 
 ### collect
@@ -33,8 +33,8 @@ sql-ml status
 Coleta queries SQL de diversas fontes. Ver [Pipeline de Dados](70-data-pipeline.md).
 
 ```bash
-sql-ml collect --input /var/log/mysql/slow.log
-sql-ml collect --query "SELECT * FROM users" --time 150 --database mydb
+sql-sage collect --input /var/log/mysql/slow.log
+sql-sage collect --query "SELECT * FROM users" --time 150 --database mydb
 ```
 
 **Opcoes:**
@@ -50,8 +50,8 @@ sql-ml collect --query "SELECT * FROM users" --time 150 --database mydb
 Extrai features estruturais das queries coletadas. Ver [Feature Extractor](80-feature-extractor.md).
 
 ```bash
-sql-ml features
-sql-ml features --input data/queries.jsonl --output data/features.jsonl
+sql-sage features
+sql-sage features --input data/queries.jsonl --output data/features.jsonl
 ```
 
 **Opcoes:**
@@ -63,8 +63,8 @@ sql-ml features --input data/queries.jsonl --output data/features.jsonl
 Treina o modelo de ML com dados de features. Ver [Treinamento de Modelo](90-model-training.md).
 
 ```bash
-sql-ml train
-sql-ml train --epochs 100 --batch-size 64
+sql-sage train
+sql-sage train --epochs 100 --batch-size 64
 ```
 
 **Opcoes:**
@@ -133,7 +133,7 @@ O sistema pode ser integrado em pipelines CI/CD usando thresholds:
 
 ```bash
 # Exemplo: falhar pipeline se score < 0.5 OU severity >= 0.8
-sql-ml analyze query.sql --output result.json
+sql-sage analyze query.sql --output result.json
 
 SCORE=$(jq '.performanceScore' result.json)
 SEVERITY=$(jq '[.insights[].severityScore] | max // 0' result.json)
@@ -157,5 +157,5 @@ fi
 
 ```bash
 npm run build
-npm link  # Para usar 'sql-ml' globalmente
+npm link  # Para usar 'sql-sage' globalmente
 ```

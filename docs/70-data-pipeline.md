@@ -140,14 +140,14 @@ O arquivo `queries.jsonl` armazena um registro por linha:
 ### Importar de Slow Query Log
 
 ```bash
-sql-ml collect --input /var/log/mysql/slow.log
-sql-ml collect --input slow.log --output data/queries.jsonl
+sql-sage collect --input /var/log/mysql/slow.log
+sql-sage collect --input slow.log --output data/queries.jsonl
 ```
 
 ### Adicionar Query Manual
 
 ```bash
-sql-ml collect \
+sql-sage collect \
   --query "SELECT * FROM users WHERE email = 'test@example.com'" \
   --time 250 \
   --database production \

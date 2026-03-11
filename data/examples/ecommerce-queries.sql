@@ -1,5 +1,5 @@
 -- ============================================================
--- E-commerce Query Bank for sql-ml-cli
+-- E-commerce Query Bank for sql-sage
 -- Database: ecommerce_demo
 --
 -- 50 queries organized in 3 tiers:

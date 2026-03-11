@@ -128,13 +128,13 @@ interface ITrainingResult {
 
 ```bash
 # Treinamento padrao
-sql-ml train
+sql-sage train
 
 # Treinamento customizado
-sql-ml train --epochs 100 --batch-size 64 --learning-rate 0.0005
+sql-sage train --epochs 100 --batch-size 64 --learning-rate 0.0005
 
 # Especificar entrada/saida
-sql-ml train --input data/features.jsonl --output models/v2
+sql-sage train --input data/features.jsonl --output models/v2
 ```
 
 ### Opcoes

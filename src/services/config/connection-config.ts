@@ -33,7 +33,7 @@ export interface ICLIConnectionOptions {
  *
  * Priority order (highest wins):
  * 1. CLI flags (explicit user input)
- * 2. Environment variables (SQLML_*)
+ * 2. Environment variables (SQLSAGE_*)
  * 3. Defaults
  *
  * Returns null if no database is specified (no connection intended).
@@ -42,15 +42,15 @@ export function resolveConnectionConfig(cliOptions?: ICLIConnectionOptions): ICo
   // Load .env file (no-op if it doesn't exist)
   dotenvConfig();
 
-  const engine = resolveString(cliOptions?.engine, process.env.SQLML_ENGINE, DEFAULTS.engine);
-  const host = resolveString(cliOptions?.host, process.env.SQLML_HOST, DEFAULTS.host);
-  const port = resolveNumber(cliOptions?.port, process.env.SQLML_PORT, DEFAULTS.port);
-  const user = resolveString(cliOptions?.user, process.env.SQLML_USER, undefined);
-  const password = resolveString(cliOptions?.password, process.env.SQLML_PASSWORD, undefined);
-  const database = resolveString(cliOptions?.database, process.env.SQLML_DATABASE, undefined);
-  const ssl = resolveBoolean(cliOptions?.ssl, process.env.SQLML_SSL, DEFAULTS.ssl);
-  const connectTimeout = resolveNumber(cliOptions?.connectTimeout, process.env.SQLML_CONNECT_TIMEOUT, DEFAULTS.connectTimeout);
-  const queryTimeout = resolveNumber(cliOptions?.queryTimeout, process.env.SQLML_QUERY_TIMEOUT, DEFAULTS.queryTimeout);
+  const engine = resolveString(cliOptions?.engine, process.env.SQLSAGE_ENGINE, DEFAULTS.engine);
+  const host = resolveString(cliOptions?.host, process.env.SQLSAGE_HOST, DEFAULTS.host);
+  const port = resolveNumber(cliOptions?.port, process.env.SQLSAGE_PORT, DEFAULTS.port);
+  const user = resolveString(cliOptions?.user, process.env.SQLSAGE_USER, undefined);
+  const password = resolveString(cliOptions?.password, process.env.SQLSAGE_PASSWORD, undefined);
+  const database = resolveString(cliOptions?.database, process.env.SQLSAGE_DATABASE, undefined);
+  const ssl = resolveBoolean(cliOptions?.ssl, process.env.SQLSAGE_SSL, DEFAULTS.ssl);
+  const connectTimeout = resolveNumber(cliOptions?.connectTimeout, process.env.SQLSAGE_CONNECT_TIMEOUT, DEFAULTS.connectTimeout);
+  const queryTimeout = resolveNumber(cliOptions?.queryTimeout, process.env.SQLSAGE_QUERY_TIMEOUT, DEFAULTS.queryTimeout);
 
   // If no database is specified, the user doesn't intend to connect
   if (!database) {
@@ -60,13 +60,13 @@ export function resolveConnectionConfig(cliOptions?: ICLIConnectionOptions): ICo
   // User and password are required for a real connection
   if (!user) {
     throw new Error(
-      'Database user is required. Provide --user flag or set SQLML_USER environment variable.'
+      'Database user is required. Provide --user flag or set SQLSAGE_USER environment variable.'
     );
   }
 
   if (!password) {
     throw new Error(
-      'Database password is required. Provide --password flag or set SQLML_PASSWORD environment variable.'
+      'Database password is required. Provide --password flag or set SQLSAGE_PASSWORD environment variable.'
     );
   }
 

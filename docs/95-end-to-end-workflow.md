@@ -2,7 +2,7 @@
 
 ## Visao Geral
 
-O `sql-ml-cli` opera em um pipeline de 4 etapas: coleta de dados, extracao de features, treinamento do modelo e analise de queries.
+O `sql-sage` opera em um pipeline de 4 etapas: coleta de dados, extracao de features, treinamento do modelo e analise de queries.
 
 ```
 ┌─────────┐     ┌──────────┐     ┌─────────┐     ┌─────────┐
@@ -27,7 +27,7 @@ SET GLOBAL slow_query_log_file = '/var/log/mysql/slow.log';
 Depois importe:
 
 ```bash
-sql-ml collect --input /var/log/mysql/slow.log
+sql-sage collect --input /var/log/mysql/slow.log
 ```
 
 ### Manualmente
@@ -36,13 +36,13 @@ Para queries conhecidas que voce quer incluir no dataset:
 
 ```bash
 # Query lenta conhecida
-sql-ml collect \
+sql-sage collect \
   --query "SELECT * FROM orders WHERE status = 'pending'" \
   --time 3500 \
   --database production
 
 # Query rapida para balancear o dataset
-sql-ml collect \
+sql-sage collect \
   --query "SELECT id, name FROM users WHERE id = 42" \
   --time 5 \
   --database production
@@ -62,7 +62,7 @@ head -1 data/queries.jsonl   # Primeira query (JSON)
 Processa cada query coletada e extrai as 18 features estruturais:
 
 ```bash
-sql-ml features
+sql-sage features
 ```
 
 Isso le `data/queries.jsonl` e gera `data/features.jsonl` com as features adicionadas a cada registro.
@@ -71,7 +71,7 @@ Isso le `data/queries.jsonl` e gera `data/features.jsonl` com as features adicio
 
 ```bash
 # Ver estatisticas
-sql-ml features
+sql-sage features
 
 # Saida esperada:
 # [Features] Loaded 150 queries
@@ -89,13 +89,13 @@ Com as features extraidas, treinar o modelo:
 
 ```bash
 # Treinamento padrao (50 epochs)
-sql-ml train
+sql-sage train
 
 # Treinamento mais longo para datasets maiores
-sql-ml train --epochs 100 --batch-size 64
+sql-sage train --epochs 100 --batch-size 64
 
 # Treinamento rapido para teste
-sql-ml train --epochs 5 --batch-size 8
+sql-sage train --epochs 5 --batch-size 8
 ```
 
 ### Interpretar Resultados
@@ -121,29 +121,29 @@ Com o modelo treinado (ou usando o modelo padrao com pesos aleatorios):
 
 ```bash
 # Analise basica
-sql-ml analyze minha-query.sql
+sql-sage analyze minha-query.sql
 
 # Salvar resultado em JSON
-sql-ml analyze minha-query.sql --output resultado.json
+sql-sage analyze minha-query.sql --output resultado.json
 
 # Com detalhes do motor ML
-sql-ml analyze minha-query.sql --verbose
+sql-sage analyze minha-query.sql --verbose
 ```
 
 ## Exemplo Completo
 
 ```bash
 # 1. Coletar queries de producao
-sql-ml collect --input /var/log/mysql/slow.log
+sql-sage collect --input /var/log/mysql/slow.log
 # [Collect] Added 47 queries to data/queries.jsonl
 
 # 2. Adicionar queries rapidas para balancear
-sql-ml collect --query "SELECT id FROM users WHERE id = 1" --time 2 --database prod
-sql-ml collect --query "SELECT name FROM products WHERE id = 5" --time 3 --database prod
-sql-ml collect --query "SELECT 1" --time 1 --database prod
+sql-sage collect --query "SELECT id FROM users WHERE id = 1" --time 2 --database prod
+sql-sage collect --query "SELECT name FROM products WHERE id = 5" --time 3 --database prod
+sql-sage collect --query "SELECT 1" --time 1 --database prod
 
 # 3. Extrair features
-sql-ml features
+sql-sage features
 # [Features] Loaded 50 queries
 # [Features] Statistics:
 #   With JOIN: 15
@@ -151,13 +151,13 @@ sql-ml features
 #   Avg execution time: 1234.50ms
 
 # 4. Treinar
-sql-ml train --epochs 30
+sql-sage train --epochs 30
 # [Train] Training completed!
 #   Final accuracy: 82.00%
 
 # 5. Analisar nova query
 echo "SELECT u.*, o.* FROM users u, orders o WHERE o.total > 100" > query.sql
-sql-ml analyze query.sql
+sql-sage analyze query.sql
 ```
 
 ## Estrutura de Arquivos
@@ -200,7 +200,7 @@ O pipeline e incremental:
 
 ```bash
 #!/bin/bash
-sql-ml analyze query.sql --output result.json
+sql-sage analyze query.sql --output result.json
 
 SCORE=$(jq '.performanceScore' result.json)
 if (( $(echo "$SCORE < 0.5" | bc -l) )); then

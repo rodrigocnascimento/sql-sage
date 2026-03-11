@@ -183,7 +183,7 @@ describe('SqlFileParser', () => {
     it('should handle the ecommerce query bank format with tier comments', () => {
       const content = [
         '-- ============================================================',
-        '-- E-commerce Query Bank for sql-ml-cli',
+        '-- E-commerce Query Bank for sql-sage',
         '-- ============================================================',
         '',
         '-- TIER 1: GOOD QUERIES',

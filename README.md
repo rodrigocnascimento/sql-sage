@@ -1,4 +1,4 @@
-# SQL ML CLI
+# SQL Sage
 
 Ferramenta de linha de comando para **análise estática e predição de performance de queries SQL**, combinando regras heurísticas com Machine Learning (BiLSTM / TensorFlow.js).
 
@@ -36,7 +36,7 @@ npm run build
 ### Analisar uma query (sem banco de dados)
 
 ```bash
-sql-ml analyze minha-query.sql
+sql-sage analyze minha-query.sql
 ```
 
 ### Pipeline completo com banco de demonstração
@@ -52,16 +52,16 @@ npm run db:seed
 cp docker/.env.docker .env
 
 # 4. Coletar queries de um arquivo .sql
-sql-ml collect data/examples/ecommerce-queries.sql
+sql-sage collect data/examples/ecommerce-queries.sql
 
 # 5. Extrair features
-sql-ml features
+sql-sage features
 
 # 6. Treinar o modelo
-sql-ml train
+sql-sage train
 
 # 7. Analisar queries com heurísticas + ML
-sql-ml analyze minha-query.sql --verbose
+sql-sage analyze minha-query.sql --verbose
 ```
 
 ---
@@ -73,10 +73,10 @@ sql-ml analyze minha-query.sql --verbose
 Analisa um arquivo SQL e retorna score de performance, insights e features extraídas.
 
 ```bash
-sql-ml analyze <arquivo.sql>
-sql-ml analyze <arquivo.sql> --verbose
-sql-ml analyze <arquivo.sql> --output resultado.json
-sql-ml analyze <arquivo.sql> --host localhost --port 3316 --user root --password pass --database mydb
+sql-sage analyze <arquivo.sql>
+sql-sage analyze <arquivo.sql> --verbose
+sql-sage analyze <arquivo.sql> --output resultado.json
+sql-sage analyze <arquivo.sql> --host localhost --port 3316 --user root --password pass --database mydb
 ```
 
 | Flag | Descrição |
@@ -93,16 +93,16 @@ Coleta queries SQL de diversas fontes: arquivos `.sql`, slow query logs do MySQL
 
 ```bash
 # Arquivo .sql (detecção automática pelo formato)
-sql-ml collect data/examples/ecommerce-queries.sql
+sql-sage collect data/examples/ecommerce-queries.sql
 
 # Slow query log do MySQL
-sql-ml collect --input /var/log/mysql/slow.log
+sql-sage collect --input /var/log/mysql/slow.log
 
 # Direto do performance_schema (requer conexão ao banco)
-sql-ml collect --source db --host localhost --port 3316 --user root --password pass --database mydb
+sql-sage collect --source db --host localhost --port 3316 --user root --password pass --database mydb
 
 # Query individual
-sql-ml collect --query "SELECT * FROM users WHERE id = 1" --time 150 --database mydb
+sql-sage collect --query "SELECT * FROM users WHERE id = 1" --time 150 --database mydb
 ```
 
 | Flag | Descrição | Padrão |
@@ -123,8 +123,8 @@ sql-ml collect --query "SELECT * FROM users WHERE id = 1" --time 150 --database 
 Extrai as 18 features estruturais das queries coletadas.
 
 ```bash
-sql-ml features
-sql-ml features --input data/queries.jsonl --output data/features.jsonl
+sql-sage features
+sql-sage features --input data/queries.jsonl --output data/features.jsonl
 ```
 
 | Flag | Descrição | Padrão |
@@ -137,8 +137,8 @@ sql-ml features --input data/queries.jsonl --output data/features.jsonl
 Treina o modelo BiLSTM com os dados de features extraídos.
 
 ```bash
-sql-ml train
-sql-ml train --epochs 100 --batch-size 64
+sql-sage train
+sql-sage train --epochs 100 --batch-size 64
 ```
 
 | Flag | Descrição | Padrão |
@@ -156,23 +156,23 @@ sql-ml train --epochs 100 --batch-size 64
 Exibe status do motor ML e informações de conexão ao banco.
 
 ```bash
-sql-ml status
+sql-sage status
 ```
 
 ---
 
 ## Flags Globais de Conexão
 
-Disponíveis em todos os comandos. Podem ser substituídas por variáveis de ambiente (`SQLML_*`) ou arquivo `.env`.
+Disponíveis em todos os comandos. Podem ser substituídas por variáveis de ambiente (`SQLSAGE_*`) ou arquivo `.env`.
 
 | Flag | Variável de Ambiente | Descrição |
 |---|---|---|
-| `--host <host>` | `SQLML_HOST` | Host do banco |
-| `--port <port>` | `SQLML_PORT` | Porta do banco |
-| `--user <user>` | `SQLML_USER` | Usuário |
-| `--password <pass>` | `SQLML_PASSWORD` | Senha |
-| `--database <name>` | `SQLML_DATABASE` | Nome do banco |
-| `--engine <engine>` | `SQLML_ENGINE` | Engine (`mysql`, `mariadb`) |
+| `--host <host>` | `SQLSAGE_HOST` | Host do banco |
+| `--port <port>` | `SQLSAGE_PORT` | Porta do banco |
+| `--user <user>` | `SQLSAGE_USER` | Usuário |
+| `--password <pass>` | `SQLSAGE_PASSWORD` | Senha |
+| `--database <name>` | `SQLSAGE_DATABASE` | Nome do banco |
+| `--engine <engine>` | `SQLSAGE_ENGINE` | Engine (`mysql`, `mariadb`) |
 | `--ssl` | — | Habilitar SSL |
 
 **Prioridade de resolução:** flags CLI > variáveis de ambiente / `.env` > valores padrão
