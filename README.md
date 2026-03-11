@@ -1,4 +1,4 @@
-# SQL Sage
+# SQL Sage 🔮
 
 Ferramenta de linha de comando para **análise estática e predição de performance de queries SQL**, combinando regras heurísticas com Machine Learning (BiLSTM / TensorFlow.js).
 
