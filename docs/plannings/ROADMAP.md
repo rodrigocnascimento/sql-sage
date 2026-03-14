@@ -1,6 +1,6 @@
 # Roadmap de Evolução - sql-sage
 
-> Visão geral do plano de evolução da v0.8.0 até v1.0-beta
+> Visão geral do plano de evolução da v0.8.1 até v1.0-beta
 
 ---
 
@@ -8,8 +8,8 @@
 
 | Versão | Código | Escopo | Status |
 |--------|--------|--------|--------|
-| [v0.8.0](ROADMAP-v080-scanner-typeorm.md) | Scanner TypeORM | Scanner com Strategy pattern | ⏳ Próxima |
-| [v0.8.1](ROADMAP-v081-perf-schema.md) | Perf Schema | Integração Performance Schema | 📋 Planejado |
+| [v0.8.1](ROADMAP-v080-scanner-typeorm.md) | Scanner TypeORM | Scanner com AST (ts-morph) | ✅ Concluída |
+| [v0.8.2](ROADMAP-v082-perf-schema.md) | Perf Schema | Integração Performance Schema | 📋 Planejado |
 | [v0.9.0](ROADMAP-v090-consolidated-pipeline.md) | Pipeline | Pipeline unificado | 📋 Planejado |
 | [v0.9.1](ROADMAP-v091-validation.md) | Validation | Validação em banco real | 📋 Planejado |
 | [v0.9.2](ROADMAP-v092-daemon-dashboard.md) | Daemon + Dashboard | Auto-treinamento e métricas | 📋 Planejado |
@@ -20,13 +20,13 @@
 ## Fluxo de Evolução
 
 ```
-v0.7.0 (atual)
+v0.8.0 (atual)
     │
     ▼
-v0.8.0 ── Scanner TypeORM (Strategy pattern)
+v0.8.1 ── Scanner TypeORM (AST-based, ts-morph)
     │
     ▼
-v0.8.1 ── Performance Schema Integration
+v0.8.2 ── Performance Schema Integration
     │
     ▼
 v0.9.0 ── Consolidated Pipeline
@@ -45,14 +45,14 @@ v1.0-beta ── Beta Release
 
 ## Resumo por Versão
 
-### v0.8.0 - Scanner TypeORM
+### v0.8.1 - Scanner TypeORM (AST)
 
-- Scanner estático de código TypeScript
-- 4 patterns iniciais: QueryBuilder, Repository find, Raw queries, QueryRunner
-- **Padrão Strategy** para extensibilidade
+- Scanner estático de código TypeScript usando AST (ts-morph)
+- 11 patterns: find, findOne, save, update, delete, softDelete, etc.
+- Suporte a código multi-linha
 - Output: JSONL com queries categorizadas
 
-### v0.8.1 - Performance Schema Integration
+### v0.8.2 - Performance Schema Integration
 
 - Coleta queries do `performance_schema`
 - Captura tempos de execução reais
