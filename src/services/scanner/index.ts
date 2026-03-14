@@ -1,7 +1,13 @@
 import { Command } from 'commander';
 import { writeFileSync } from 'fs';
 import { TypeORMScanner } from './scanner.service.js';
-import { QueryPatternFactory } from './strategies/index.js';
+
+const PATTERNS = [
+  { id: 'repository-find', name: 'Repository Find (find, findOne, count, etc.)' },
+  { id: 'repository-save', name: 'Repository Save (save, create, insert, upsert)' },
+  { id: 'repository-delete', name: 'Repository Delete (delete, remove, softDelete)' },
+  { id: 'repository-update', name: 'Repository Update (update, increment, decrement)' },
+];
 
 export function createScanCommand(): Command {
   return new Command('scan')
@@ -13,10 +19,9 @@ export function createScanCommand(): Command {
     .option('-v, --verbose', 'Verbose output')
     .action(async (directory: string, options: { output?: string; pattern?: string; listPatterns?: boolean; verbose?: boolean }) => {
       if (options.listPatterns) {
-        const factory = new QueryPatternFactory();
         console.log('Available patterns:');
-        for (const strategy of factory.getRegisteredPatterns()) {
-          console.log(`  ${strategy.patternId}: ${strategy.patternName}`);
+        for (const p of PATTERNS) {
+          console.log(`  ${p.id}: ${p.name}`);
         }
         return;
       }

@@ -1,7 +1,7 @@
-# Roadmap v0.8.1 - Performance Schema Integration
+# Roadmap v0.8.2 - Performance Schema Integration
 
 **Código:** `feat/perf-schema-integration`  
-**Versão:** v0.8.1  
+**Versão:** v0.8.2  
 **Data Planejada:** 2026-03-XX  
 **Status:** 📋 Planejado
 

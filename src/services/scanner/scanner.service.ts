@@ -1,16 +1,14 @@
-import { readFileSync, existsSync } from 'fs';
+import { existsSync } from 'fs';
 import { globSync } from 'glob';
 import { resolve } from 'path';
-import { QueryPatternFactory } from './strategies/index.js';
-import { IExtractedQuery, IScanResult, IScanOptions, IScanContext } from './types.js';
+import { TypeOrmAstParser, IMethodCall } from './ast-parser.js';
+import { IExtractedQuery, IScanResult, IScanOptions } from './types.js';
 
 export class TypeORMScanner {
   private projectDir: string;
-  private factory: QueryPatternFactory;
   
   constructor(projectDir: string) {
     this.projectDir = resolve(projectDir);
-    this.factory = new QueryPatternFactory();
   }
   
   async scan(options: IScanOptions = {}): Promise<IScanResult> {
@@ -32,16 +30,20 @@ export class TypeORMScanner {
       console.log(`[Scanner] Found ${files.length} TypeScript files`);
     }
     
+    const parser = new TypeOrmAstParser(this.projectDir);
+    
     for (const file of files) {
       try {
-        const content = readFileSync(file, 'utf-8');
+        const methodCalls = parser.parseFile(file);
         const relativePath = file.replace(this.projectDir + '/', '');
-        const fileQueries = this.extractFromFile(content, relativePath, options.pattern);
         
-        for (const query of fileQueries) {
-          if (!options.pattern || query.patternId === options.pattern) {
-            queries.push(query);
-            stats.byPattern[query.patternId] = (stats.byPattern[query.patternId] || 0) + 1;
+        for (const methodCall of methodCalls) {
+          const extracted = this.extractQuery(methodCall, relativePath);
+          if (!extracted) continue;
+          
+          if (!options.pattern || extracted.patternId === options.pattern) {
+            queries.push(extracted);
+            stats.byPattern[extracted.patternId] = (stats.byPattern[extracted.patternId] || 0) + 1;
           }
         }
       } catch (error) {
@@ -84,35 +86,85 @@ export class TypeORMScanner {
     return files;
   }
   
-  private extractFromFile(content: string, filePath: string, patternFilter?: string): IExtractedQuery[] {
-    const results: IExtractedQuery[] = [];
-    const lines = content.split('\n');
+  private extractQuery(methodCall: IMethodCall, filePath: string): IExtractedQuery | null {
+    const { name: methodName, repositoryName, arguments: argsStr, line } = methodCall;
     
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i];
-      const context: IScanContext = {
-        filePath,
-        lineNumber: i + 1,
-        fileContent: content,
-      };
-      
-      const extracted = this.factory.extractAll(line, context);
-      
-      for (const query of extracted) {
-        if (!patternFilter || query.patternId === patternFilter) {
-          results.push(query);
-        }
+    const entity = repositoryName.replace('Repository', '').replace('repository', '');
+    const patternId = this.getPatternForMethod(methodName);
+    
+    return {
+      id: `${patternId}_${line}_${Math.random().toString(36).substring(7)}`,
+      patternId,
+      entity: entity.toLowerCase(),
+      sql: this.buildSQL(methodName, entity, argsStr),
+      file: filePath,
+      line,
+      params: [],
+      metadata: { method: methodName },
+    };
+  }
+  
+  private getPatternForMethod(methodName: string): string {
+    const findMethods = [
+      'find', 'findOne', 'findOneOrFail', 'findOneBy', 'findBy', 
+      'findAndCount', 'findAndCountBy', 'count', 'countBy', 
+      'exists', 'existsBy'
+    ];
+    const saveMethods = ['save', 'create', 'insert', 'upsert'];
+    const deleteMethods = ['delete', 'remove', 'softDelete', 'softRemove'];
+    const updateMethods = ['update', 'updateAll', 'increment', 'decrement'];
+    
+    if (findMethods.includes(methodName)) return 'repository-find';
+    if (saveMethods.includes(methodName)) return 'repository-save';
+    if (deleteMethods.includes(methodName)) return 'repository-delete';
+    if (updateMethods.includes(methodName)) return 'repository-update';
+    
+    return 'unknown';
+  }
+  
+  private buildSQL(methodName: string, entity: string, argsStr: string): string {
+    const tableName = entity.toLowerCase() + 's';
+    const isSelect = ['find', 'findOne', 'findOneOrFail', 'findOneBy', 'findBy', 'findAndCount', 'findAndCountBy'].includes(methodName);
+    const isCount = ['count', 'countBy'].includes(methodName);
+    const isExists = ['exists', 'existsBy'].includes(methodName);
+    
+    if (isSelect) {
+      let sql = 'SELECT * FROM ' + tableName;
+      if (argsStr.includes('where:')) {
+        sql += ' WHERE ...';
       }
+      if (methodName === 'findOne' || methodName === 'findOneOrFail') {
+        sql += ' LIMIT 1';
+      }
+      return sql;
     }
     
-    return results;
-  }
-  
-  getRegisteredPatterns(): string[] {
-    return this.factory.getRegisteredPatterns().map(s => s.patternId);
-  }
-  
-  hasPattern(patternId: string): boolean {
-    return this.factory.hasPattern(patternId);
+    if (isCount) {
+      return 'SELECT COUNT(*) FROM ' + tableName;
+    }
+    
+    if (isExists) {
+      return 'SELECT 1 FROM ' + tableName + ' LIMIT 1';
+    }
+    
+    switch (methodName) {
+      case 'save':
+      case 'create':
+      case 'insert':
+      case 'upsert':
+        return `INSERT INTO ${tableName} (...) VALUES (...)`;
+      case 'delete':
+      case 'remove':
+      case 'softDelete':
+      case 'softRemove':
+        return `DELETE FROM ${tableName}`;
+      case 'update':
+      case 'updateAll':
+      case 'increment':
+      case 'decrement':
+        return `UPDATE ${tableName} SET ...`;
+      default:
+        return `${methodName.toUpperCase()} ${tableName}`;
+    }
   }
 }

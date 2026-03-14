@@ -4,6 +4,18 @@ Todas as mudancas notaveis do projeto sao documentadas neste arquivo.
 
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 
+## [0.8.1] - 2026-03-14
+
+### Changed
+- Scanner TypeORM agora usa AST (ts-morph) em vez de regex
+- Detecção de código multi-linha agora funciona corretamente
+
+### Added
+- 11 padrões TypeORM suportados: find, findOne, findOneOrFail, findOneBy, findBy, findAndCount, count, save, insert, update, delete, softDelete, etc.
+
+### Removed
+- Código de strategies baseado em regex (obsoleto)
+
 ## [0.8.0] - 2026-03-14
 
 ### Added
