@@ -4,6 +4,16 @@ Todas as mudancas notaveis do projeto sao documentadas neste arquivo.
 
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 
+## [0.8.0] - 2026-03-14
+
+### Added
+- Scanner TypeORM para extração de queries SQL de projetos externos
+- Padrão Strategy para detecção de patterns (extensível)
+- 4 patterns iniciais: `query-builder`, `repository-find`, `raw-query`, `query-runner`
+- Comando CLI `sql-sage scan <directory>` para escanear projetos TypeORM
+- Output em formato JSONL compatível com pipeline
+- Dependência `glob` para encontrar arquivos TypeScript
+
 ## [0.7.0] - 2026-03-10
 
 ### Changed
