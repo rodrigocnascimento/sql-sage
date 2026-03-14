@@ -27,7 +27,7 @@ Detecta anti-patterns, gargalos de performance e sugere otimizações — antes 
 ### Instalação
 
 ```bash
-git clone https://github.com/rodrigocnascimento/sqlsage.git
+git clone https://github.com/rodrigocnascimento/sql-sage.git
 cd sqlsage
 npm install
 npm run build

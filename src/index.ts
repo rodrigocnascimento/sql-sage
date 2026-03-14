@@ -4,6 +4,7 @@ import { MLPredictionService } from './services/ml-prediction.service.js';
 import { createCollectCommand } from './services/data/query-collector.js';
 import { createFeaturesCommand } from './services/data/features-command.js';
 import { createTrainCommand } from './services/data/train-command.js';
+import { createScanCommand } from './services/scanner/index.js';
 import { resolveConnectionConfig, ICLIConnectionOptions } from './services/config/connection-config.js';
 import { createConnector, IDatabaseConnector } from './services/db/connector.js';
 
@@ -57,6 +58,7 @@ async function resolveConnector(): Promise<IDatabaseConnector | null> {
 program.addCommand(createCollectCommand(resolveConnector));
 program.addCommand(createFeaturesCommand());
 program.addCommand(createTrainCommand());
+program.addCommand(createScanCommand());
 
 program
   .command('analyze')

@@ -4,6 +4,28 @@ Todas as mudancas notaveis do projeto sao documentadas neste arquivo.
 
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 
+## [0.8.1] - 2026-03-14
+
+### Changed
+- Scanner TypeORM agora usa AST (ts-morph) em vez de regex
+- Detecção de código multi-linha agora funciona corretamente
+
+### Added
+- 11 padrões TypeORM suportados: find, findOne, findOneOrFail, findOneBy, findBy, findAndCount, count, save, insert, update, delete, softDelete, etc.
+
+### Removed
+- Código de strategies baseado em regex (obsoleto)
+
+## [0.8.0] - 2026-03-14
+
+### Added
+- Scanner TypeORM para extração de queries SQL de projetos externos
+- Padrão Strategy para detecção de patterns (extensível)
+- 4 patterns iniciais: `query-builder`, `repository-find`, `raw-query`, `query-runner`
+- Comando CLI `sql-sage scan <directory>` para escanear projetos TypeORM
+- Output em formato JSONL compatível com pipeline
+- Dependência `glob` para encontrar arquivos TypeScript
+
 ## [0.7.0] - 2026-03-10
 
 ### Changed
