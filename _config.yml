@@ -1,5 +1,7 @@
 title: SQL Sage Documentation
 description: Developer documentation for SQL Sage
+url: https://rodrigo.is-a.dev
+baseurl: /sql-sage
 remote_theme: just-the-docs/just-the-docs
 color_scheme: light
 search_enabled: true
