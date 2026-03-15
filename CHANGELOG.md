@@ -4,16 +4,13 @@ Todas as mudancas notaveis do projeto sao documentadas neste arquivo.
 
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 
-## [0.8.2] - 2026-03-15
+## [0.8.3] - 2026-03-15
 
 ### Added
 - Suporte a `--source perf-schema` como alias para `--source db`
 - Opção `--explain` disponível (para implementação futura)
 
-### Changed
-- comando `collect` agora aceita `perf-schema` como source
-
-## [0.8.1] - 2026-03-14
+## [0.8.2] - 2026-03-15
 
 ### Changed
 - Scanner TypeORM agora usa AST (ts-morph) em vez de regex
