@@ -12,6 +12,11 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 - Labeling com threshold adaptativo (percentile, IQR, fixed)
 - Comando CLI: `sql-sage consolidate`
 
+## [0.9.2] - 2026-03-15
+
+### Added
+- Documentação publica com GitHub Pages em `documentation/`
+
 ## [0.9.0] - 2026-03-15
 
 ### Added
