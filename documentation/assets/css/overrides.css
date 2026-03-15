@@ -1,0 +1,113 @@
+:root {
+  --ss-bg: #f7f5f2;
+  --ss-surface: #ffffff;
+  --ss-text: #1f1b16;
+  --ss-muted: #5a524a;
+  --ss-accent: #0f5d57;
+  --ss-accent-contrast: #ffffff;
+  --ss-border: #e4ded7;
+  --ss-hero: radial-gradient(1200px circle at 10% -10%, #e9efe6 0%, #f7f5f2 45%, #f7f5f2 100%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ss-bg: #0f0f0d;
+    --ss-surface: #151411;
+    --ss-text: #f2ece4;
+    --ss-muted: #b3a99c;
+    --ss-accent: #7dd3c7;
+    --ss-accent-contrast: #0f0f0d;
+    --ss-border: #2a261f;
+    --ss-hero: radial-gradient(1200px circle at 10% -10%, #1d2a26 0%, #0f0f0d 45%, #0f0f0d 100%);
+  }
+}
+
+body {
+  background: var(--ss-bg);
+  color: var(--ss-text);
+}
+
+a {
+  color: var(--ss-accent);
+}
+
+.site-title,
+.site-title:hover,
+.site-title:visited {
+  color: var(--ss-text);
+}
+
+.side-bar,
+.main-content {
+  background: var(--ss-bg);
+}
+
+.nav-list .nav-list-item .nav-list-link,
+.nav-list .nav-list-item .nav-list-link:visited {
+  color: var(--ss-text);
+}
+
+.nav-list .nav-list-item .nav-list-expander {
+  color: var(--ss-muted);
+}
+
+.search-input {
+  background: var(--ss-surface);
+  border-color: var(--ss-border);
+  color: var(--ss-text);
+}
+
+.btn {
+  background: var(--ss-accent);
+  color: var(--ss-accent-contrast);
+  border-color: var(--ss-accent);
+}
+
+.btn:hover,
+.btn:focus {
+  filter: brightness(0.95);
+}
+
+.ss-hero {
+  background: var(--ss-hero);
+  border: 1px solid var(--ss-border);
+  border-radius: 18px;
+  padding: 36px 32px;
+  margin-bottom: 32px;
+}
+
+.ss-hero h1 {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+}
+
+.ss-hero p {
+  max-width: 640px;
+  color: var(--ss-muted);
+}
+
+.ss-hero .ss-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.ss-pill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.ss-pill {
+  background: var(--ss-surface);
+  border: 1px solid var(--ss-border);
+  border-radius: 14px;
+  padding: 14px 16px;
+  color: var(--ss-text);
+}
+
+.ss-section-title {
+  margin-top: 28px;
+}

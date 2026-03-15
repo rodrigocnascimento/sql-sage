@@ -3,9 +3,17 @@ description: Developer documentation for SQL Sage
 remote_theme: just-the-docs/just-the-docs
 color_scheme: light
 search_enabled: true
+mermaid: true
 
 plugins:
   - jekyll-remote-theme
+
+just_the_docs:
+  custom_css:
+    - assets/css/overrides.css
+
+ga_tracking: G-RK202LXFM2
+ga_tracking_anonymize_ip: true
 
 aux_links:
   Repository:
@@ -14,6 +22,7 @@ aux_links:
 footer_content: "SQL Sage documentation"
 
 exclude:
+  - AGENTS.md
   - specs
   - data
   - dist
