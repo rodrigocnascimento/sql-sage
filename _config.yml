@@ -1,9 +1,11 @@
 title: SQL Sage Documentation
 description: Developer documentation for SQL Sage
-theme: just-the-docs
 remote_theme: just-the-docs/just-the-docs
 color_scheme: light
 search_enabled: true
+
+plugins:
+  - jekyll-remote-theme
 
 aux_links:
   Repository:
