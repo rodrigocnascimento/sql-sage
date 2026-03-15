@@ -16,11 +16,7 @@
     "test:e2e": "vitest run src/__tests__/e2e-pipeline.test.ts",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "opencode:compile": "node scripts/opencode-compile.mjs",
-    "db:up": "docker compose -f docker/docker-compose.yml up -d",
-    "db:down": "docker compose -f docker/docker-compose.yml down",
-    "db:reset": "docker compose -f docker/docker-compose.yml down -v && docker compose -f docker/docker-compose.yml up -d",
-    "db:seed": "tsx docker/seed/seed.ts"
+    "opencode:compile": "node scripts/opencode-compile.mjs"
   },
   "keywords": [
     "sql",
