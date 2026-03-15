@@ -1,6 +1,6 @@
 {
   "name": "sql-sage",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "CLI tool to analyze SQL files using ML-based query performance prediction",
   "main": "dist/index.js",
   "bin": {
