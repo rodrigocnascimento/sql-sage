@@ -5,6 +5,7 @@ import { createCollectCommand } from './services/data/query-collector.js';
 import { createFeaturesCommand } from './services/data/features-command.js';
 import { createTrainCommand } from './services/data/train-command.js';
 import { createScanCommand } from './services/scanner/index.js';
+import { createConsolidateCommand } from './services/consolidate-command.js';
 import { resolveConnectionConfig, ICLIConnectionOptions } from './services/config/connection-config.js';
 import { createConnector, IDatabaseConnector } from './services/db/connector.js';
 
@@ -59,6 +60,7 @@ program.addCommand(createCollectCommand(resolveConnector));
 program.addCommand(createFeaturesCommand());
 program.addCommand(createTrainCommand());
 program.addCommand(createScanCommand());
+program.addCommand(createConsolidateCommand());
 
 program
   .command('analyze')

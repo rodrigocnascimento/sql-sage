@@ -4,7 +4,15 @@ Todas as mudancas notaveis do projeto sao documentadas neste arquivo.
 
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 
-## [0.8.3] - 2026-03-15
+## [0.9.1] - 2026-03-15
+
+### Added
+- QueryConsolidator: une queries de múltiplas fontes
+- Deduplicação de queries
+- Labeling com threshold adaptativo (percentile, IQR, fixed)
+- Comando CLI: `sql-sage consolidate`
+
+## [0.9.0] - 2026-03-15
 
 ### Added
 - Suporte a `--source perf-schema` como alias para `--source db`
