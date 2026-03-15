@@ -119,7 +119,7 @@ sql-sage scan <project-dir> --verbose
 
 ## TDDs Associados
 
-- `docs/tdd-ast-scanner.md` - Parser AST
+- `specs/tdd-ast-scanner.md` - Parser AST
 
 ---
 

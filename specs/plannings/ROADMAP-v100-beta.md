@@ -98,11 +98,11 @@ sql-sage status
 | Documento | Descrição |
 |-----------|-----------|
 | `README.md` | Visão geral, instalação, quick start |
-| `docs/getting-started.md` | Tutorial passo a passo |
-| `docs/commands.md` | Referência completa de comandos |
-| `docs/examples.md` | Exemplos de uso |
-| `docs/architecture.md` | Arquitetura técnica |
-| `docs/troubleshooting.md` | Problemas comuns e soluções |
+| `specs/getting-started.md` | Tutorial passo a passo |
+| `specs/commands.md` | Referência completa de comandos |
+| `specs/examples.md` | Exemplos de uso |
+| `specs/architecture.md` | Arquitetura técnica |
+| `specs/troubleshooting.md` | Problemas comuns e soluções |
 
 ### 4. Exemplos
 
@@ -234,7 +234,7 @@ examples/
 
 ## TDDs Associados
 
-- `docs/tdd-release-process.md` - Processo de release
+- `specs/tdd-release-process.md` - Processo de release
 
 ---
 

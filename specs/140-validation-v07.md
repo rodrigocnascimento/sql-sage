@@ -144,7 +144,7 @@ valAccuracy: 25%
 
 3 validation samples = statistical noise.
 
-**Plan:** See `docs/130-plano-evolucao-v08-v10.md` for detailed plan.
+**Plan:** See `specs/130-plano-evolucao-v08-v10.md` for detailed plan.
 
 ### 2.2 Overfitting (High Priority)
 
@@ -366,7 +366,7 @@ npm run db:reset                 # Destroy + recreate
 
 ## References
 
-- Previous validation: `docs/110-validation-and-evolution.md` (v0.5.0)
-- Technical audit: `docs/100-auditoria-tecnica-v02.md` (v0.2)
-- Evolution plan: `docs/130-plano-evolucao-v08-v10.md`
-- Latest audit: `docs/120-auditoria-tecnica-v07.md`
+- Previous validation: `specs/110-validation-and-evolution.md` (v0.5.0)
+- Technical audit: `specs/100-auditoria-tecnica-v02.md` (v0.2)
+- Evolution plan: `specs/130-plano-evolucao-v08-v10.md`
+- Latest audit: `specs/120-auditoria-tecnica-v07.md`

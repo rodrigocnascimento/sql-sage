@@ -59,7 +59,7 @@ src/
         catalog-gatherer.ts         # Coleta de catalogo
         schema-registry.ts          # Registro de schemas
         types.ts                    # Interfaces ML
-docs/                               # Documentacao tecnica
+specs/                               # Documentacao tecnica
 data/
   examples/                         # Dados de exemplo (commitados)
 models/
@@ -194,6 +194,6 @@ Exemplos:
 
 ## Documentacao
 
-- Documentacao tecnica em `docs/` (portugues)
+- Documentacao tecnica em `specs/` (portugues)
 - Novos componentes devem ter um doc correspondente
-- Formato: `docs/<numero>-<slug>.md`
+- Formato: `specs/<numero>-<slug>.md`

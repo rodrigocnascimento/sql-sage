@@ -287,8 +287,8 @@ Se overfitting:
 
 ## TDDs Associados
 
-- `docs/tdd-validation-metrics.md` - Métricas de validação
-- `docs/tdd-evaluation-cli.md` - CLI de avaliação
+- `specs/tdd-validation-metrics.md` - Métricas de validação
+- `specs/tdd-evaluation-cli.md` - CLI de avaliação
 
 ---
 

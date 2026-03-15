@@ -67,8 +67,8 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 - Positional `[file]` argument in `collect` command with automatic format detection (`.sql` vs slow log)
 - npm scripts: `db:up`, `db:down`, `db:reset`, `db:seed` for Docker database management
 - `.env.docker` connection template for demo database
-- Validation & evolution document: `docs/110-validation-and-evolution.md`
-- Technical Design Document: `docs/tdd-ecommerce-demo-db.md`
+- Validation & evolution document: `specs/110-validation-and-evolution.md`
+- Technical Design Document: `specs/tdd-ecommerce-demo-db.md`
 - 16 new tests for `SqlFileParser` — total: 345 tests
 
 ### Fixed
@@ -86,7 +86,7 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 - Global CLI flags: `--host`, `--port`, `--user`, `--password`, `--database`, `--engine`, `--ssl`
 - Connection config resolver with CLI > `.env` > defaults priority (`resolveConnectionConfig()`)
 - `.env.example` template for `SQLSAGE_*` environment variables
-- Technical Design Document: `docs/tdd-real-db-connector.md`
+- Technical Design Document: `specs/tdd-real-db-connector.md`
 - 63 new tests (connector factory, MySQL connector, connection config) — total: 329 tests
 
 ### Changed
@@ -111,7 +111,7 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 - `hasSubquery()` false positive on aggregate functions (COUNT, SUM, AVG, MAX)
 
 ### Changed
-- Manual test plan (`docs/99-plano-teste-manual.md`) updated to v0.3 compatibility
+- Manual test plan (`specs/99-plano-teste-manual.md`) updated to v0.3 compatibility
 
 ## [0.3.0] - 2026-03-06
 
@@ -169,10 +169,10 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
   - Total: 109 → 234 testes
 
 - **Documentacao**
-  - `docs/70-data-pipeline.md` - Pipeline de dados
-  - `docs/80-feature-extractor.md` - Feature extractor v0.2
-  - `docs/90-model-training.md` - Treinamento de modelo
-  - `docs/95-end-to-end-workflow.md` - Workflow completo
+  - `specs/70-data-pipeline.md` - Pipeline de dados
+  - `specs/80-feature-extractor.md` - Feature extractor v0.2
+  - `specs/90-model-training.md` - Treinamento de modelo
+  - `specs/95-end-to-end-workflow.md` - Workflow completo
   - `CONTRIBUTING.md` - Guia de contribuicao
   - `CHANGELOG.md` - Historico de mudancas
   - README traduzido para pt-BR com todos os 5 comandos
@@ -195,5 +195,5 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 - `MLPredictionService` como servico de alto nivel
 - Comandos CLI: `analyze` e `status`
 - 109 testes unitarios com ~95% de cobertura
-- Documentacao tecnica em `docs/` (10 a 60)
+- Documentacao tecnica em `specs/` (10 a 60)
 - Deteccao de 3 tipos de insights: PERFORMANCE_BOTTLENECK, SCHEMA_SUGGESTION, ANTI_PATTERN

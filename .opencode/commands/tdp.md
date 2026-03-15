@@ -14,7 +14,7 @@ git branch
 
 ## 2. Regras do Protocolo (do AGENTS.md)
 - Não gere código antes de criar o TDD
-- Crie o documento em `docs/tdd-<feature-slug>.md`
+- Crie o documento em `specs/tdd-<feature-slug>.md`
 - Inclua: Objective & Scope, Proposed Technical Strategy, Implementation Plan
 
 ## 3. Output Obrigatório

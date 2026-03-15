@@ -10,7 +10,7 @@ SQL Sage is a CLI that analyzes SQL and predicts performance using a mix of heur
 This site is the day-to-day developer documentation for running, extending, and operating the tool.
 
 {: .note }
-If you are looking for specs, TDDs, or historical audits, those live under `docs/` in the repo.
+If you are looking for specs, TDDs, or historical audits, those live under `specs/` in the repo.
 
 ## Start here
 

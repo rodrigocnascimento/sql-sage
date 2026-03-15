@@ -4,7 +4,7 @@
 
 - **What:** Implementar coletor de queries do MySQL Performance Schema para capturar queries com tempo de execução real
 - **Why:** Complementar o scanner estático (v0.8.1) com dados reais do banco de desenvolvimento
-- **File Target:** `docs/tdd-perf-schema-collector.md`
+- **File Target:** `specs/tdd-perf-schema-collector.md`
 
 ---
 
