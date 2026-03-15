@@ -22,9 +22,10 @@ export function createCollectCommand(resolveConnector?: ConnectorResolver): Comm
     .option('-q, --query <sql>', 'Single query to add')
     .option('-t, --time <ms>', 'Execution time in milliseconds', '0')
     .option('-d, --database <name>', 'Database name', 'default')
-    .option('-s, --source <source>', 'Source type: file (default) or db', 'file')
+    .option('-s, --source <source>', 'Source type: file (default), db, or perf-schema', 'file')
     .option('--min-time <ms>', 'Minimum execution time filter for DB collection (ms)', '0')
     .option('--limit <n>', 'Maximum number of queries to collect from DB', '100')
+    .option('--explain', 'Run EXPLAIN for each query')
     .option('--timestamp <iso>', 'Timestamp (ISO format)', new Date().toISOString());
 
   command.action(async (file, options) => {
@@ -35,8 +36,11 @@ export function createCollectCommand(resolveConnector?: ConnectorResolver): Comm
     const storage = new DatasetStorage(options.output);
     let collected = false;
 
+    // Normalize source: perf-schema is alias for db
+    const source = options.source === 'perf-schema' ? 'db' : options.source;
+
     // Source: database (performance_schema)
-    if (options.source === 'db') {
+    if (source === 'db') {
       if (!resolveConnector) {
         console.error('[Collect] Error: Database connector not available. Provide global --database, --user, --password flags.');
         process.exit(1);
