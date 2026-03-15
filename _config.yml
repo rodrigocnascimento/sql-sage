@@ -1,0 +1,24 @@
+title: SQL Sage Documentation
+description: Developer documentation for SQL Sage
+theme: just-the-docs
+remote_theme: just-the-docs/just-the-docs
+color_scheme: light
+search_enabled: true
+
+aux_links:
+  Repository:
+    - "{{ site.github.repository_url }}"
+
+footer_content: "SQL Sage documentation"
+
+exclude:
+  - docs
+  - data
+  - dist
+  - models
+  - node_modules
+  - coverage
+  - scripts
+  - src
+  - .sqlsage
+  - package-lock.json
