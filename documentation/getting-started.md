@@ -5,12 +5,26 @@ nav_order: 2
 
 # Getting Started
 
+This page covers development setup. If you want to use SQL Sage as a CLI, install from npm.
+
+## Install from npm
+
+```bash
+npm install -g sql-sage
+```
+
+Run the CLI:
+
+```bash
+sql-sage analyze my-query.sql
+```
+
 ## Prerequisites
 
 - Node.js >= 18
 - Docker and Docker Compose (optional, for the demo database)
 
-## Install
+## Development setup
 
 ```bash
 git clone https://github.com/rodrigocnascimento/sql-sage.git
@@ -19,7 +33,7 @@ npm install
 npm run build
 ```
 
-## Run a quick analysis
+## Run a quick analysis (dev)
 
 ```bash
 sql-sage analyze my-query.sql
@@ -58,3 +72,7 @@ npm run build     # Compile TypeScript
 npm run start     # Run compiled JavaScript
 npm run test      # Run tests once
 ```
+
+## Next step
+
+- [End-to-end tutorial](tutorial.md)

@@ -1,6 +1,6 @@
 ---
 title: Testing Guide
-nav_order: 5
+nav_order: 6
 ---
 
 # Testing Guide
@@ -16,6 +16,6 @@ npm run test:coverage
 
 ## Manual pipeline validation
 
-Use the manual test plan for end-to-end validation of the CLI pipeline.
+Use the end-to-end tutorial to validate collection, feature extraction, training, and analysis output consistency.
 
-- Manual plan: [specs/99-plano-teste-manual.md]({{ site.github.repository_url }}/blob/main/specs/99-plano-teste-manual.md)
+- [End-to-end tutorial](tutorial.md)
