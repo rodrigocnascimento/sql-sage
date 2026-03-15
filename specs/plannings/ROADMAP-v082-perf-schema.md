@@ -222,7 +222,7 @@ function deduplicate(
 
 ## TDDs Associados
 
-- `docs/tdd-perf-schema-collector.md` - Coleta Performance Schema
+- `specs/tdd-perf-schema-collector.md` - Coleta Performance Schema
 
 ---
 

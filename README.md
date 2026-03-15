@@ -338,31 +338,31 @@ npx tsc --noEmit
 
 ## Documentação
 
-Documentação técnica completa em [`docs/`](docs/):
+Documentação técnica completa em [`specs/`](specs/):
 
 | Documento | Descrição |
 |---|---|
-| [Planejamento](docs/00-planning.md) | Visão geral e roadmap |
-| [QueryPerformancePredictor](docs/10-query-performance-predictor.md) | Preditor de performance |
-| [SQLFeatureEngineer](docs/20-sql-feature-engineer.md) | Feature engineer v0.1 |
-| [MLQueryEngine](docs/40-ml-query-engine.md) | Motor de análise ML |
-| [MLPredictionService](docs/50-ml-prediction-service.md) | Serviço de predição |
-| [Interface CLI](docs/60-cli-interface.md) | Comandos e interface |
-| [Pipeline de Dados](docs/70-data-pipeline.md) | Coleta e armazenamento |
-| [Feature Extractor](docs/80-feature-extractor.md) | Extração de 18 features |
-| [Treinamento de Modelo](docs/90-model-training.md) | Pipeline de treinamento |
-| [Workflow Completo](docs/95-end-to-end-workflow.md) | Fluxo end-to-end |
-| [Auditoria Técnica](docs/100-auditoria-tecnica-v02.md) | Auditoria v0.2 |
-| [Validação e Evolução](docs/110-validation-and-evolution.md) | Checklist e roadmap |
+| [Planejamento](specs/00-planning.md) | Visão geral e roadmap |
+| [QueryPerformancePredictor](specs/10-query-performance-predictor.md) | Preditor de performance |
+| [SQLFeatureEngineer](specs/20-sql-feature-engineer.md) | Feature engineer v0.1 |
+| [MLQueryEngine](specs/40-ml-query-engine.md) | Motor de análise ML |
+| [MLPredictionService](specs/50-ml-prediction-service.md) | Serviço de predição |
+| [Interface CLI](specs/60-cli-interface.md) | Comandos e interface |
+| [Pipeline de Dados](specs/70-data-pipeline.md) | Coleta e armazenamento |
+| [Feature Extractor](specs/80-feature-extractor.md) | Extração de 18 features |
+| [Treinamento de Modelo](specs/90-model-training.md) | Pipeline de treinamento |
+| [Workflow Completo](specs/95-end-to-end-workflow.md) | Fluxo end-to-end |
+| [Auditoria Técnica](specs/100-auditoria-tecnica-v02.md) | Auditoria v0.2 |
+| [Validação e Evolução](specs/110-validation-and-evolution.md) | Checklist e roadmap |
 
 
 ### Technical Design Documents
 
 | TDD | Feature |
 |---|---|
-| [tdd-unify-prediction-engine](docs/tdd-unify-prediction-engine.md) | Unificação heurísticas + ML |
-| [tdd-real-db-connector](docs/tdd-real-db-connector.md) | Conector de banco plugável |
-| [tdd-ecommerce-demo-db](docs/tdd-ecommerce-demo-db.md) | Banco de demonstração |
+| [tdd-unify-prediction-engine](specs/tdd-unify-prediction-engine.md) | Unificação heurísticas + ML |
+| [tdd-real-db-connector](specs/tdd-real-db-connector.md) | Conector de banco plugável |
+| [tdd-ecommerce-demo-db](specs/tdd-ecommerce-demo-db.md) | Banco de demonstração |
 
 ---
 

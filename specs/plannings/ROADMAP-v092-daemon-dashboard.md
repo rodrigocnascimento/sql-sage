@@ -465,11 +465,11 @@ src/
 
 ## TDDs Associados
 
-- `docs/tdd-daemon-architecture.md` - Arquitetura do daemon
-- `docs/tdd-auto-trainer.md` - Treinamento automático
-- `docs/tdd-hot-reload.md` - Hot reload de modelo
-- `docs/tdd-cli-dashboard.md` - Dashboard CLI
-- `docs/tdd-html-dashboard.md` - Relatório HTML
+- `specs/tdd-daemon-architecture.md` - Arquitetura do daemon
+- `specs/tdd-auto-trainer.md` - Treinamento automático
+- `specs/tdd-hot-reload.md` - Hot reload de modelo
+- `specs/tdd-cli-dashboard.md` - Dashboard CLI
+- `specs/tdd-html-dashboard.md` - Relatório HTML
 
 ---
 

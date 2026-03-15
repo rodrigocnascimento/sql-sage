@@ -14,7 +14,7 @@ aux_links:
 footer_content: "SQL Sage documentation"
 
 exclude:
-  - docs
+  - specs
   - data
   - dist
   - models

@@ -4,7 +4,7 @@
 
 - **What:** Implementar pipeline unificado que consolida queries de múltiplas fontes (scanner, perf-schema, manual), remove duplicatas e aplica labels
 - **Why:** Unificar o fluxo de coleta de dados para training do ML
-- **File Target:** `docs/tdd-consolidated-pipeline.md`
+- **File Target:** `specs/tdd-consolidated-pipeline.md`
 
 ---
 

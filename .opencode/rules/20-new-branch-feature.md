@@ -65,7 +65,7 @@ You MUST output the exact command sequence:
 
 After branch creation, you MUST follow **Mandatory Technical Design Phase (TDP)**:
 
-* Generate the TDD in **`docs/tdd-<feature-slug>.md`**
+* Generate the TDD in **`specs/tdd-<feature-slug>.md`**
 * STOP and ask:
 
 > “Do you approve this technical approach, Developer?”
@@ -76,7 +76,7 @@ After branch creation, you MUST follow **Mandatory Technical Design Phase (TDP)*
 
 * If the stable base branch is not confirmed or not updated.
 * If the feature branch was not created.
-* If the TDD was not produced in `docs/`.
+* If the TDD was not produced in `specs/`.
 * If explicit approval was not given.
 
 ## Notes

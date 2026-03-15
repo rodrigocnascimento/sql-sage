@@ -5,6 +5,6 @@ nav_order: 8
 
 # Design Documents (TDDs)
 
-Technical Design Documents live under `docs/` in the repo.
+Technical Design Documents live under `specs/` in the repo.
 
-- [TDDs folder]({{ site.github.repository_url }}/tree/main/docs)
+- [TDDs folder]({{ site.github.repository_url }}/tree/main/specs)

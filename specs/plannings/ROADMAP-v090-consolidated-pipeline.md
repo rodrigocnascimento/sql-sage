@@ -331,9 +331,9 @@ sql-sage stats --input data/consolidated.jsonl
 
 ## TDDs Associados
 
-- `docs/tdd-consolidator.md` - Consolidador de queries
-- `docs/tdd-adaptive-threshold.md` - Threshold adaptativo
-- `docs/tdd-pipeline-cli.md` - CLI unificado
+- `specs/tdd-consolidator.md` - Consolidador de queries
+- `specs/tdd-adaptive-threshold.md` - Threshold adaptativo
+- `specs/tdd-pipeline-cli.md` - CLI unificado
 
 ---
 

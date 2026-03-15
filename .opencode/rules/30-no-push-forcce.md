@@ -72,7 +72,7 @@ When target is a protected branch, you MUST output:
   * tests passing
   * lint passing
   * build passing
-  * TDD exists in `docs/`
+  * TDD exists in `specs/`
   * reviewers (if applicable)
 
 ---
@@ -185,7 +185,7 @@ When implementing a feature:
 
 3. Produce TDD in:
 
-* `docs/tdd-<issueId>-<slug>.md`
+* `specs/tdd-<issueId>-<slug>.md`
 
 4. Implement + commit with Conventional Commits
 

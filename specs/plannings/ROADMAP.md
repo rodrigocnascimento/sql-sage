@@ -90,32 +90,32 @@ v1.0-beta ── Beta Release
 Cada versão terá seus próprios TDDs conforme especificado no roadmap de cada versão.
 
 ### v0.8.0
-- `docs/tdd-scanner-architecture.md`
-- `docs/tdd-query-builder-strategy.md`
-- `docs/tdd-repository-find-strategy.md`
-- `docs/tdd-raw-query-strategy.md`
-- `docs/tdd-query-runner-strategy.md`
+- `specs/tdd-scanner-architecture.md`
+- `specs/tdd-query-builder-strategy.md`
+- `specs/tdd-repository-find-strategy.md`
+- `specs/tdd-raw-query-strategy.md`
+- `specs/tdd-query-runner-strategy.md`
 
 ### v0.8.1
-- `docs/tdd-perf-schema-collector.md`
+- `specs/tdd-perf-schema-collector.md`
 
 ### v0.9.0
-- `docs/tdd-consolidator.md`
-- `docs/tdd-adaptive-threshold.md`
-- `docs/tdd-pipeline-cli.md`
+- `specs/tdd-consolidator.md`
+- `specs/tdd-adaptive-threshold.md`
+- `specs/tdd-pipeline-cli.md`
 
 ### v0.9.1
-- `docs/tdd-validation-metrics.md`
+- `specs/tdd-validation-metrics.md`
 
 ### v0.9.2
-- `docs/tdd-daemon-architecture.md`
-- `docs/tdd-cli-dashboard.md`
-- `docs/tdd-html-dashboard.md`
+- `specs/tdd-daemon-architecture.md`
+- `specs/tdd-cli-dashboard.md`
+- `specs/tdd-html-dashboard.md`
 
 ---
 
 ## Referências
 
-- Auditoria v0.7: `docs/120-auditoria-tecnica-v07.md`
-- Validation v0.7: `docs/140-validation-v07.md`
-- Plano Evolução: `docs/130-plano-evolucao-v08-v10.md`
+- Auditoria v0.7: `specs/120-auditoria-tecnica-v07.md`
+- Validation v0.7: `specs/140-validation-v07.md`
+- Plano Evolução: `specs/130-plano-evolucao-v08-v10.md`

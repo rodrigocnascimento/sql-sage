@@ -2,7 +2,7 @@
 
 ## Context
 
-To ensure system integrity and prevent architectural drift, no code changes—refactors, new features, or bug fixes—shall be implemented without a prior **Technical Design Document (TDD)**. All TDDs must be targeted for the existing **`docs/`** directory (strictly plural) to maintain a single source of truth.
+To ensure system integrity and prevent architectural drift, no code changes—refactors, new features, or bug fixes—shall be implemented without a prior **Technical Design Document (TDD)**. All TDDs must be targeted for the existing **`specs/`** directory (strictly plural) to maintain a single source of truth.
 
 ## The Protocol
 
@@ -11,8 +11,8 @@ Whenever a task is assigned, you **MUST NOT** generate implementation code immed
 ### 1. Objective & Scope
 
 * **What:** A concise summary of the requested change.
-* **Why:** The technical reasoning (e.g., "Standardizing directory structure to `docs/` to fix CI/CD pathing").
-* **File Target:** Explicitly state: "This document is intended for `docs/tdd-[feature-name].md`".
+* **Why:** The technical reasoning (e.g., "Standardizing directory structure to `specs/` to fix CI/CD pathing").
+* **File Target:** Explicitly state: "This document is intended for `specs/tdd-[feature-name].md`".
 
 ### 2. Proposed Technical Strategy
 
@@ -27,7 +27,7 @@ Whenever a task is assigned, you **MUST NOT** generate implementation code immed
 ### 3. Implementation Plan (The "How")
 
 * Show brief **pseudocode** or **method signatures**.
-* **Path Resolution:** Explicitly state how you will handle directory depth (e.g., "Using exactly $n$ sets of `../` to reach the target from `docs/`").
+* **Path Resolution:** Explicitly state how you will handle directory depth (e.g., "Using exactly $n$ sets of `../` to reach the target from `specs/`").
 * **Naming Standards:** Ensure all new assets follow the project's existing naming conventions.
 
 ## Execution Gate
@@ -38,6 +38,6 @@ Whenever a task is assigned, you **MUST NOT** generate implementation code immed
 
 ### Why this works for the Senior Lead:
 
-* **Directory Discipline:** Hard-codes the requirement for the `docs/` folder, preventing redundant "doc" folders.
+* **Directory Discipline:** Hard-codes the requirement for the `specs/` folder, preventing redundant "doc" folders.
 * **Pre-emptive Debugging:** Forces a check for Go/TypeScript safety before a single line of logic is written.
 * **Audit Trail:** Every TDD becomes a permanent `.md` file in your repository.

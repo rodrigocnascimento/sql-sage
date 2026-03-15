@@ -4,7 +4,7 @@
 
 - **What:** Substituir o scanner baseado em regex por um scanner baseado em AST para detecção de queries TypeORM
 - **Why:** Resolver limitações do regex (multi-linha, parênteses aninhados, formatação variável)
-- **Target:** `docs/tdd-ast-scanner.md`
+- **Target:** `specs/tdd-ast-scanner.md`
 
 ## 2. Proposed Technical Strategy
 

@@ -2,7 +2,7 @@
 
 **Issue:** ISSUE-060
 **Branch:** `feat/ISSUE-060-ecommerce-demo-db`
-**Target:** `docs/tdd-ecommerce-demo-db.md`
+**Target:** `specs/tdd-ecommerce-demo-db.md`
 
 ---
 

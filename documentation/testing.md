@@ -18,4 +18,4 @@ npm run test:coverage
 
 Use the manual test plan for end-to-end validation of the CLI pipeline.
 
-- Manual plan: [docs/99-plano-teste-manual.md]({{ site.github.repository_url }}/blob/main/docs/99-plano-teste-manual.md)
+- Manual plan: [specs/99-plano-teste-manual.md]({{ site.github.repository_url }}/blob/main/specs/99-plano-teste-manual.md)
